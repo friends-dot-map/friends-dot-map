@@ -14,6 +14,8 @@ export default function Map({
   showPopup,
   setShowPopup,
 }) {
+
+  
   return (
     <div className={styles.map}>
       <h1 className="text-slate-100">friends.map()</h1>
@@ -23,9 +25,7 @@ export default function Map({
         style={{ position: 'relative', width: '100%', height: '100%' }}
         mapStyle="mapbox://styles/mapbox/dark-v10"
         mapboxAccessToken={process.env.MapboxAccessToken}
-        onMove={(viewport) => {
-          setViewport(viewport);
-        }}
+        onMove={e => setViewport(e.viewState)}
       >
         <NavigationControl />
         <GeolocateControl

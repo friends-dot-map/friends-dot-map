@@ -3,8 +3,8 @@ import Map from '../../components/Map/Map';
 
 export default function Home() {
   const [viewport, setViewport] = useState({
-    latitude: 45.5472,
-    longitude: -122.6417,
+    latitude: 45.633,
+    longitude: -122.65,
     zoom: 14,
   });
 
