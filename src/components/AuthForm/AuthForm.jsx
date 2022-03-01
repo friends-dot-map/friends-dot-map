@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function AuthForm({ handleAuth, isSigningUp }) {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
 
   return (
     <div>
+      <h1>friends.map()</h1>
       <form>
         <label>
           email:
@@ -31,9 +33,26 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
           />
         </label>
         <button onClick={handleSubmit}>
-          {isSigningUp ? 'Register' : 'Sign In'}
+          {isSigningUp ? 'Register' : 'Log In'}
         </button>
       </form>
+      <p>
+        a convenient travel companion to keep your group safe and organized when
+        in unfamiliar places
+      </p>
+      {isSigningUp ? (
+        <>
+          <p>
+            Already have an account? <Link to="/login">Log In</Link>
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            Need to make an account? <Link to="/register">Register</Link>
+          </p>
+        </>
+      )}
     </div>
   );
 }
