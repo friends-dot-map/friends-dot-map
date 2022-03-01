@@ -1,6 +1,8 @@
 /*
   Example of using Tailwind classes in a CSS file:
 */
+html,
 body {
   @apply bg-slate-800;
+  @apply h-full;
 }
