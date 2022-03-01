@@ -11,8 +11,6 @@ export default function App() {
   const [viewport, setViewport] = useState({
     latitude: 45.5472,
     longitude: -122.6417,
-    width: '100vw',
-    height: '100vh',
     zoom: 14,
   });
   const [userCoords, setUserCoords] = useState(null);
@@ -20,6 +18,7 @@ export default function App() {
 
   return (
     <div className={styles.map}>
+      <h1 className="text-slate-100">friends.map()</h1>
       <ReactMapGL
         {...viewport}
         reuseMaps
