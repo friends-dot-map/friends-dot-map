@@ -15,6 +15,10 @@ export default function App() {
     height: '100vh',
     zoom: 14,
   });
+  const [userCoords, setUserCoords] = useState({});
+  const [showPopup, setShowPopup] = useState(true);
+
+  console.log('userCoords', userCoords);
 
   return (
     <div className={styles.map}>
@@ -30,8 +34,18 @@ export default function App() {
       >
         <div className={styles.nav}>
           <NavigationControl />
-          <GeolocateControl trackUserLocation showUserHeading />
         </div>
+        <GeolocateControl
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation
+          showUserHeading
+          onGeolocate={(e) =>
+            setUserCoords({
+              latitude: e.coords.latitude,
+              longitude: e.coords.longitude,
+            })
+          }
+        />
       </ReactMapGL>
     </div>
   );
