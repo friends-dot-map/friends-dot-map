@@ -3,8 +3,8 @@ import './App.css'; /* Global CSS */
 import styles from './App.module.css'; /* CSS Modules */
 import ReactMapGL, {
   GeolocateControl,
-  Marker,
   NavigationControl,
+  Popup,
 } from 'react-map-gl';
 
 export default function App() {
@@ -15,10 +15,8 @@ export default function App() {
     height: '100vh',
     zoom: 14,
   });
-  const [userCoords, setUserCoords] = useState({});
+  const [userCoords, setUserCoords] = useState(null);
   const [showPopup, setShowPopup] = useState(true);
-
-  console.log('userCoords', userCoords);
 
   return (
     <div className={styles.map}>
@@ -32,9 +30,7 @@ export default function App() {
           setViewport(viewport);
         }}
       >
-        <div className={styles.nav}>
-          <NavigationControl />
-        </div>
+        <NavigationControl />
         <GeolocateControl
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation
@@ -46,6 +42,18 @@ export default function App() {
             })
           }
         />
+        {showPopup && userCoords && (
+          <Popup
+            longitude={userCoords.longitude}
+            latitude={userCoords.latitude}
+            anchor="bottom-left"
+            onClose={() => setShowPopup(false)}
+          >
+            <strong>Jordan</strong> <br />
+            gone Phishin', 3.0 baby
+            <br /> 11:11 PM
+          </Popup>
+        )}
       </ReactMapGL>
     </div>
   );
