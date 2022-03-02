@@ -1,15 +1,19 @@
+import { useProfile } from '../../context/ProfileContext';
+
 export default function ProfileForm({
   isCreating,
-  profile,
   handleProfile,
   updateProfileForm,
   handleDeleteProfile,
 }) {
-  const { username, first_name, likes, avatar, status } = profile;
+  const {
+    profile: { username, first_name, likes, avatar, status },
+  } = useProfile();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleProfile(username, first_name, status, avatar, likes);
+    history.replace(`/profile/${username}`);
   };
 
   return (

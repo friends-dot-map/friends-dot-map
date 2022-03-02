@@ -12,7 +12,7 @@ export default function Auth({ isSigningUp = false }) {
     try {
       if (isSigningUp) {
         await signUpUser(email, password);
-        history.replace('/');
+        history.replace('/create');
       } else {
         const data = await signInUser(email, password);
         setUser({ id: data.id, email: data.email });

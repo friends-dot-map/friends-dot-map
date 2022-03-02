@@ -2,25 +2,14 @@ import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import { useUser } from '../../context/userContext';
 import {
   createProfile,
-  getProfile,
   updateProfile,
   deleteProfileByEmail,
 } from '../../services/profiles';
-import { useState, useEffect } from 'react';
+import { useProfile } from '../../context/ProfileContext';
 
 export default function UpdateProfile({ isCreating = false }) {
   const { user } = useUser();
-  const [profile, setProfile] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const profile = await getProfile(user.email);
-      setProfile(profile);
-      setLoading(false);
-    };
-    fetchProfile();
-  }, []);
+  const { profile, loading, setProfile } = useProfile();
 
   const handleProfile = async (username, first_name, status, avatar, likes) => {
     try {
@@ -72,7 +61,6 @@ export default function UpdateProfile({ isCreating = false }) {
       <ProfileForm
         {...{
           isCreating,
-          profile,
           handleProfile,
           updateProfileForm,
           handleDeleteProfile,
