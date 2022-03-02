@@ -4,6 +4,7 @@ import {
   createProfile,
   getProfile,
   updateProfile,
+  deleteProfileByEmail,
 } from '../../services/profiles';
 import { useState, useEffect } from 'react';
 
@@ -14,7 +15,7 @@ export default function UpdateProfile({ isCreating = false }) {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const profile = await getProfile();
+      const profile = await getProfile(user.email);
       setProfile(profile);
       setLoading(false);
     };
@@ -26,6 +27,7 @@ export default function UpdateProfile({ isCreating = false }) {
       if (isCreating) {
         const data = await createProfile({
           user_id: user.id,
+          email: user.email,
           username,
           first_name,
           status,
@@ -36,6 +38,7 @@ export default function UpdateProfile({ isCreating = false }) {
       } else {
         const data = await updateProfile({
           user_id: user.id,
+          email: user.email,
           username,
           first_name,
           status,
@@ -49,6 +52,15 @@ export default function UpdateProfile({ isCreating = false }) {
     }
   };
 
+  const handleDeleteProfile = async () => {
+    try {
+      await deleteProfileByEmail(user.email);
+      console.log('delete successful');
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const updateProfileForm = (key, value) => {
     profile[key] = value;
     setProfile({ ...profile });
@@ -57,7 +69,15 @@ export default function UpdateProfile({ isCreating = false }) {
   if (loading) return <h1>loading</h1>;
   return (
     <div>
-      <ProfileForm {...{ profile, handleProfile, updateProfileForm }} />
+      <ProfileForm
+        {...{
+          isCreating,
+          profile,
+          handleProfile,
+          updateProfileForm,
+          handleDeleteProfile,
+        }}
+      />
     </div>
   );
 }

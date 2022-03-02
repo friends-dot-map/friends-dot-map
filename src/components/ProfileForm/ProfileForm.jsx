@@ -1,7 +1,9 @@
 export default function ProfileForm({
+  isCreating,
   profile,
   handleProfile,
   updateProfileForm,
+  handleDeleteProfile,
 }) {
   const { username, first_name, likes, avatar, status } = profile;
 
@@ -71,6 +73,11 @@ export default function ProfileForm({
         </label>
         <button>Submit</button>
       </form>
+      {!isCreating && (
+        <button className="text-red-400" onClick={handleDeleteProfile}>
+          Delete profile
+        </button>
+      )}
     </div>
   );
 }
