@@ -2,12 +2,15 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { Link } from 'react-router-dom'
+import { signOutUser } from '../../services/users'
+import { useUser } from '../../context/userContext'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function NavButton() {
+    const { setUser } = useUser();
   return (
     <Menu as="div" className="absolute right-0 top-40 inline-block text-left">
                     <div>
@@ -67,10 +70,16 @@ export default function NavButton() {
                 </Link>
               )}
             </Menu.Item>
-            <form method="POST" action="#">
+            
               <Menu.Item>
                 {({ active }) => (
                   <button
+                  onClick={
+                      async () => {
+                          await signOutUser();
+                          setUser({});
+                      }
+                  }
                   type="submit"
                   className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -81,7 +90,7 @@ export default function NavButton() {
                   </button>
                 )}
               </Menu.Item>
-            </form>
+          
           </div>
         </Menu.Items>
       </Transition>

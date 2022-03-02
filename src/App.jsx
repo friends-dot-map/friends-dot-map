@@ -10,9 +10,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
+        <PrivateRoute exact path="/">
           <Home />
-        </Route>
+        </PrivateRoute>
 
         <Route path="/login">
           <Auth />
@@ -29,9 +29,11 @@ export default function App() {
         <PrivateRoute path="/edit">
           <UpdateProfile />
         </PrivateRoute>
+
         <PrivateRoute path="/profile/:username">
           <DisplayProfile />
         </PrivateRoute>
+
       </Switch>
     </BrowserRouter>
   );

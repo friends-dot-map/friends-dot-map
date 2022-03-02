@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Map from '../../components/Map/Map';
 import { useUser } from '../../context/userContext';
-import { updateCoords } from '../../services/profiles';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

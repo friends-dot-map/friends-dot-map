@@ -11,7 +11,8 @@ export default function Auth({ isSigningUp = false }) {
   const handleAuth = async (email, password) => {
     try {
       if (isSigningUp) {
-        await signUpUser(email, password);
+        const data = await signUpUser(email, password);
+        setUser({ id: data.id, email: data.email });
         history.replace('/create');
       } else {
         const data = await signInUser(email, password);
