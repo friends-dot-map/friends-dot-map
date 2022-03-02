@@ -1,4 +1,5 @@
 import { useProfile } from '../../context/ProfileContext';
+import { useHistory } from 'react-router-dom';
 
 export default function ProfileForm({
   isCreating,
@@ -6,6 +7,7 @@ export default function ProfileForm({
   updateProfileForm,
   handleDeleteProfile,
 }) {
+    const history = useHistory();
   const {
     profile: { username, first_name, likes, avatar, status },
   } = useProfile();
