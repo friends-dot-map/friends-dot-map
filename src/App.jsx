@@ -3,7 +3,7 @@ import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import UpdateProfile from './views/UpdateProfile/UpdateProfile';
-import DisplayProfile from './views/DisplayProfile/DisplayProfile';
+import DisplayProfile from './components/DisplayProfile/DisplayProfile';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
@@ -32,7 +32,6 @@ export default function App() {
         <PrivateRoute path="/profile/:username">
           <DisplayProfile />
         </PrivateRoute>
-
       </Switch>
     </BrowserRouter>
   );
