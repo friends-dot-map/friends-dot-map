@@ -5,6 +5,8 @@ import { useUser } from './userContext';
 export const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
+
+
   const [profile, setProfile] = useState({
     username: '',
     first_name: '',
@@ -21,12 +23,12 @@ const ProfileProvider = ({ children }) => {
         const profileData = await getProfile(user.email);
         setProfile(profileData);
       } catch (error) {
-        console.log(error);
+        throw new Error('Could not fetch profile')
       }
       setLoading(false);
     };
     fetchProfile();
-  }, []);
+  }, [profile.status]);
 
   const profileValues = { profile, loading, setLoading, setProfile };
 
