@@ -1,22 +1,42 @@
 import { client, parseData } from './client';
 
-export async function getProfile() {
-  const request = await client.from('profiles').select().single();
+export async function getProfile(email) {
+  const request = await client
+    .from('profiles')
+    .select('*')
+    .match({ email })
+    .single();
   return parseData(request);
 }
 
-export async function updateProfile({ username, first_name, status, avatar, likes, coords }) {
+export async function createProfile({
+  user_id,
+  email,
+  username,
+  first_name,
+  status,
+  avatar,
+  likes,
+}) {
   const request = await client
     .from('profiles')
-    .update({ username, first_name, status, avatar, likes, coords })
+    .insert({ user_id, email, username, first_name, status, avatar, likes });
+  return parseData(request);
+}
+
+export async function updateProfile({
+  user_id,
+  email,
+  username,
+  first_name,
+  status,
+  avatar,
+  likes,
+}) {
+  const request = await client
+    .from('profiles')
+    .update({ user_id, email, username, first_name, status, avatar, likes })
     .match({ email });
-  return parseData(request);
-}
-
-export async function createProfile({ username, first_name, status, avatar, likes, coords }) {
-  const request = await client
-    .from('profiles')
-    .insert({ username, first_name, status, avatar, likes, coords });
   return parseData(request);
 }
 
