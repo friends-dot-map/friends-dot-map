@@ -23,7 +23,8 @@ export default function Home() {
   }, []);
 
   const [userCoords, setUserCoords] = useState(null);
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   if (loading) return <h1>loading...</h1>;
 
@@ -36,6 +37,8 @@ export default function Home() {
         setUserCoords,
         showPopup,
         setShowPopup,
+        selectedUser,
+        setSelectedUser,
       }}
     />
   );
