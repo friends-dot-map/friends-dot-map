@@ -3,6 +3,8 @@ import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import UpdateProfile from './views/UpdateProfile/UpdateProfile';
+import DisplayProfile from './views/DisplayProfile/DisplayProfile';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
   return (
@@ -20,13 +22,16 @@ export default function App() {
           <Auth isSigningUp />
         </Route>
 
-        <Route path="/create">
+        <PrivateRoute path="/create">
           <UpdateProfile isCreating />
-        </Route>
+        </PrivateRoute>
 
-        <Route path="/edit">
+        <PrivateRoute path="/edit">
           <UpdateProfile />
-        </Route>
+        </PrivateRoute>
+        <PrivateRoute path="/profile/:username">
+          <DisplayProfile />
+        </PrivateRoute>
 
       </Switch>
     </BrowserRouter>
