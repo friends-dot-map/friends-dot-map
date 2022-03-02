@@ -20,17 +20,17 @@ export async function createProfile({
 }
 
 export async function updateProfile({
+  user_id,
   username,
   first_name,
   status,
   avatar,
   likes,
-  coords,
 }) {
   const request = await client
     .from('profiles')
-    .update({ username, first_name, status, avatar, likes, coords })
-    .match({ email });
+    .update({ user_id, username, first_name, status, avatar, likes })
+    .match({ user_id }); // We'll need to find another way to access user email
   return parseData(request);
 }
 

@@ -1,12 +1,25 @@
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import { useUser } from '../../context/userContext';
-import { createProfile, updateProfile } from '../../services/profiles';
-import { useState } from 'react';
+import {
+  createProfile,
+  getProfile,
+  updateProfile,
+} from '../../services/profiles';
+import { useState, useEffect } from 'react';
 
-export default function UpdateProfile({ isCreating = true }) {
+export default function UpdateProfile({ isCreating = false }) {
   const { user } = useUser();
   const [profile, setProfile] = useState({});
-  console.log('user', user);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profile = await getProfile();
+      setProfile(profile);
+      setLoading(false);
+    };
+    fetchProfile();
+  }, []);
 
   const handleProfile = async (username, first_name, status, avatar, likes) => {
     try {
@@ -19,10 +32,10 @@ export default function UpdateProfile({ isCreating = true }) {
           avatar,
           likes,
         });
-        console.log(data);
         setProfile(data);
       } else {
         const data = await updateProfile({
+          user_id: user.id,
           username,
           first_name,
           status,
@@ -32,7 +45,7 @@ export default function UpdateProfile({ isCreating = true }) {
         setProfile(data);
       }
     } catch (error) {
-      throw new Error('Error. Not able to update Supabase.');
+      throw new Error('Unable to update Supabase');
     }
   };
 
@@ -41,6 +54,7 @@ export default function UpdateProfile({ isCreating = true }) {
     setProfile({ ...profile });
   };
 
+  if (loading) return <h1>loading</h1>;
   return (
     <div>
       <ProfileForm {...{ profile, handleProfile, updateProfileForm }} />
