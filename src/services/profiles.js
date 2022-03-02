@@ -40,6 +40,17 @@ export async function updateProfile({
   return parseData(request);
 }
 
+export async function updateCoords(coords, user_id) {
+  const request = await client
+    .from('profiles')
+    .update({
+      coords: { latitude: coords.latitude, longitude: coords.longitude },
+    })
+    .match({ user_id });
+  console.log(request);
+  return parseData(request);
+}
+
 export async function deleteProfileByEmail(email) {
   const request = await client.from('profiles').delete().match({ email });
   return parseData(request);
