@@ -5,6 +5,7 @@ import ReactMapGL, {
   NavigationControl,
   Popup,
 } from 'react-map-gl';
+import NavButton from '../NavButton/NavButton';
 import styles from './Map.module.css';
 
 const otherUsers = [
@@ -52,6 +53,8 @@ export default function Map({
         mapboxAccessToken={process.env.MapboxAccessToken}
         onMove={(e) => setViewport(e.viewState)}
       >
+        <NavButton className="fixed right-0" />
+
         <NavigationControl />
         <GeolocateControl
           positionOptions={{ enableHighAccuracy: true }}
