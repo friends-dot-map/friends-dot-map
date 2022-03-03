@@ -10,7 +10,7 @@ export default function DisplayProfile() {
   const {
     loading,
     userCoords,
-    profile: { username, first_name, likes, avatar, status, user_id, coords },
+    profile: { user_id },
   } = useProfile();
   const params = useParams();
   const history = useHistory();

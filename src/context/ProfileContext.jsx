@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { getProfile } from '../services/profiles';
 import { useUser } from './userContext';
+import { formatDate } from '../utils/utils';
 
 export const ProfileContext = createContext();
 
@@ -14,6 +15,7 @@ const ProfileProvider = ({ children }) => {
     status: '',
     avatar: '',
     coords: userCoords,
+    updated_at: formatDate(),
   });
   const [loading, setLoading] = useState(true);
   const { user } = useUser();

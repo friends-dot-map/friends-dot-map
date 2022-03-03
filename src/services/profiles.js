@@ -1,4 +1,5 @@
 import { client, parseData } from './client';
+import { formatDate } from '../utils/utils';
 
 export async function getProfile(email) {
   const request = await client
@@ -20,7 +21,16 @@ export async function createProfile({
 }) {
   const request = await client
     .from('profiles')
-    .insert({ user_id, email, username, first_name, status, avatar, likes });
+    .insert({
+      user_id,
+      email,
+      username,
+      first_name,
+      status,
+      avatar,
+      likes,
+      updated_at: formatDate(),
+    });
   return parseData(request);
 }
 
@@ -35,7 +45,16 @@ export async function updateProfile({
 }) {
   const request = await client
     .from('profiles')
-    .update({ user_id, email, username, first_name, status, avatar, likes })
+    .update({
+      user_id,
+      email,
+      username,
+      first_name,
+      status,
+      avatar,
+      likes,
+      updated_at: formatDate(),
+    })
     .match({ email });
   return parseData(request);
 }
@@ -46,6 +65,7 @@ export async function updateStatus(status, coords, user_id) {
     .update({
       status,
       coords: { latitude: coords.latitude, longitude: coords.longitude },
+      updated_at: formatDate(),
     })
     .match({ user_id });
 

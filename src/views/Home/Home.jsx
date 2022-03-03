@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Map from '../../components/Map/Map';
+import { useState, useEffect } from 'react';
 import { useProfile } from '../../context/ProfileContext';
+import Map from '../../components/Map/Map';
 
 export default function Home() {
+  const { userCoords, setUserCoords } = useProfile();
   const [loading, setLoading] = useState(true);
 
   const [viewport, setViewport] = useState({
     latitude: '',
     longitude: '',
-    zoom: 14,
+    zoom: 15,
   });
-  const { userCoords, setUserCoords } = useProfile();
-  // const [userCoords, setUserCoords] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
+
+  const [showPopup, setShowPopup] = useState(true);
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
