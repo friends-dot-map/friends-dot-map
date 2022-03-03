@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Map from '../../components/Map/Map';
-import { useUser } from '../../context/userContext';
+import { useProfile } from '../../context/ProfileContext';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const [coords, setCoords] = useState({});
+
   const [viewport, setViewport] = useState({
     latitude: '',
     longitude: '',
     zoom: 14,
   });
-  const { user } = useUser();
-
-  const [userCoords, setUserCoords] = useState(null);
+  const { userCoords, setUserCoords } = useProfile();
+  // const [userCoords, setUserCoords] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -21,8 +20,11 @@ export default function Home() {
       navigator.geolocation.getCurrentPosition((position) => {
         if (position && position.coords) {
           const { latitude, longitude } = position.coords;
-          setCoords({ latitude, longitude });
           setViewport((prevState) => ({ ...prevState, latitude, longitude }));
+          setUserCoords({
+            latitude,
+            longitude,
+          });
           setLoading(false);
         }
       });
@@ -30,14 +32,7 @@ export default function Home() {
     fetchLocation();
   }, []);
 
-  const handleCoords = async () => {
-    try {
-      await updateCoords(coords, user.id);
-      console.log(coords);
-    } catch (error) {
-      throw new Error('it isnt working..... yet');
-    }
-  };
+  console.log(userCoords);
 
   if (loading) return <h1>loading...</h1>;
 
@@ -53,7 +48,6 @@ export default function Home() {
           setShowPopup,
           selectedUser,
           setSelectedUser,
-          handleCoords,
         }}
       />
     </>

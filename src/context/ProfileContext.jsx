@@ -5,7 +5,7 @@ import { useUser } from './userContext';
 export const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
-
+  const [userCoords, setUserCoords] = useState({});
 
   const [profile, setProfile] = useState({
     username: '',
@@ -13,6 +13,7 @@ const ProfileProvider = ({ children }) => {
     likes: '',
     status: '',
     avatar: '',
+    coords: userCoords,
   });
   const [loading, setLoading] = useState(true);
   const { user } = useUser();
@@ -23,14 +24,21 @@ const ProfileProvider = ({ children }) => {
         const profileData = await getProfile(user.email);
         setProfile(profileData);
       } catch (error) {
-        throw new Error('Could not fetch profile')
+        throw new Error('Could not fetch profile');
       }
       setLoading(false);
     };
     fetchProfile();
-  }, [profile.status]);
+  }, []);
 
-  const profileValues = { profile, loading, setLoading, setProfile };
+  const profileValues = {
+    profile,
+    loading,
+    setLoading,
+    setProfile,
+    userCoords,
+    setUserCoords,
+  };
 
   return (
     <ProfileContext.Provider value={profileValues}>
