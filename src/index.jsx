@@ -1,12 +1,10 @@
-import React from 'react';
 import { render } from 'react-dom';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import App from './App';
-import { UserProvider } from './context/userContext';
-
-import './style.css';
+import { UserProvider } from './context/UserContext';
 import { ProfileProvider } from './context/ProfileContext';
 import { GroupProvider } from './context/GroupContext';
+import App from './App';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import './style.css';
 
 render(
   <React.StrictMode>

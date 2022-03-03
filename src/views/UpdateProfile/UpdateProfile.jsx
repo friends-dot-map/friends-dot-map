@@ -1,11 +1,11 @@
-import ProfileForm from '../../components/ProfileForm/ProfileForm';
-import { useUser } from '../../context/userContext';
+import { useUser } from '../../context/UserContext';
+import { useProfile } from '../../context/ProfileContext';
 import {
   createProfile,
   updateProfile,
   deleteProfileByEmail,
 } from '../../services/profiles';
-import { useProfile } from '../../context/ProfileContext';
+import ProfileForm from '../../components/ProfileForm/ProfileForm';
 
 export default function UpdateProfile({ isCreating = false }) {
   const { user } = useUser();
@@ -54,17 +54,15 @@ export default function UpdateProfile({ isCreating = false }) {
     setProfile({ ...profile });
   };
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <div aria-label="loader">Loading...</div>;
   return (
-    <div>
-      <ProfileForm
-        {...{
-          isCreating,
-          handleProfile,
-          updateProfileForm,
-          handleDeleteProfile,
-        }}
-      />
-    </div>
+    <ProfileForm
+      {...{
+        isCreating,
+        handleProfile,
+        updateProfileForm,
+        handleDeleteProfile,
+      }}
+    />
   );
 }

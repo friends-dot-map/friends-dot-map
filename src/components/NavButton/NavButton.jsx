@@ -1,10 +1,10 @@
-import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { Link } from 'react-router-dom';
-import { signOutUser } from '../../services/users';
-import { useUser } from '../../context/userContext';
+import { Fragment } from 'react';
+import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
+import { signOutUser } from '../../services/users';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -16,6 +16,7 @@ export default function NavButton() {
     setProfile,
     profile: { username },
   } = useProfile();
+
   return (
     <Menu as="div" className="absolute right-10 top-3 inline-block text-left">
       <div>
@@ -39,7 +40,7 @@ export default function NavButton() {
                 <Link
                   to="/"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    active ? 'bg-gray-100 text-red-500' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}
                 >
@@ -88,7 +89,7 @@ export default function NavButton() {
                     'block w-full text-left px-4 py-2 text-sm'
                   )}
                 >
-                  Sign out
+                  Log out
                 </button>
               )}
             </Menu.Item>

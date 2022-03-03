@@ -19,7 +19,9 @@ const GroupProvider = ({ children }) => {
     };
     fetchGroup();
   }, [profile]);
-  const groupValue = { group, setGroup };
+
+  const groupValue = { group };
+
   return (
     <GroupContext.Provider value={groupValue}>{children}</GroupContext.Provider>
   );

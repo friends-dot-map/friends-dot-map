@@ -3,18 +3,14 @@ import { useProfile } from '../../context/ProfileContext';
 import Map from '../../components/Map/Map';
 
 export default function Home() {
-  const { userCoords, setUserCoords, loading, setLoading, profile } =
-    useProfile();
-  // const [loading, setLoading] = useState(true);
-
+  const [showPopup, setShowPopup] = useState(true);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [viewport, setViewport] = useState({
     latitude: '',
     longitude: '',
     zoom: 15,
   });
-
-  const [showPopup, setShowPopup] = useState(true);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const { userCoords, setUserCoords, loading, profile } = useProfile();
 
   useEffect(() => {
     const fetchLocation = () => {
@@ -32,22 +28,20 @@ export default function Home() {
     fetchLocation();
   }, [profile]);
 
-  if (loading) return <h1>loading...</h1>;
+  if (loading) return <div aria-label="loader">Loading...</div>;
 
   return (
-    <>
-      <Map
-        {...{
-          viewport,
-          setViewport,
-          userCoords,
-          setUserCoords,
-          showPopup,
-          setShowPopup,
-          selectedUser,
-          setSelectedUser,
-        }}
-      />
-    </>
+    <Map
+      {...{
+        viewport,
+        setViewport,
+        userCoords,
+        setUserCoords,
+        showPopup,
+        setShowPopup,
+        selectedUser,
+        setSelectedUser,
+      }}
+    />
   );
 }

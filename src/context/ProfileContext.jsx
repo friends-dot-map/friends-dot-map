@@ -1,13 +1,12 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { getProfile } from '../services/profiles';
-import { useUser } from './userContext';
+import { useUser } from './UserContext';
 import { formatDate } from '../utils/utils';
 
 export const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
   const [userCoords, setUserCoords] = useState({ latitude: '', longitude: '' });
-
   const [profile, setProfile] = useState({
     username: '',
     first_name: '',
