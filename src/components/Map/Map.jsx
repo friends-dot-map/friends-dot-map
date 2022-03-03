@@ -9,6 +9,7 @@ import NavButton from '../NavButton/NavButton';
 import styles from './Map.module.css';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
+import { Link } from 'react-router-dom';
 
 export default function Map({
   viewport,
@@ -22,7 +23,7 @@ export default function Map({
 }) {
   const { profile, loading, setLoading } = useProfile();
   const { group } = useGroup();
-  console.log(group);
+  
   if (loading && group.length < 1) return <h1>loading</h1>;
   return (
     <div className={styles.map}>
@@ -92,7 +93,8 @@ export default function Map({
               latitude={user.coords.latitude}
               anchor="top-right"
             >
-              <strong>{user.username}</strong> <br />
+              <Link to={`/profile/${user.username}`}>{user.username}</Link>{' '}
+              <br />
               {user.status}
               <br /> 2:40 PM
             </Popup>
