@@ -14,16 +14,15 @@ import { Link } from 'react-router-dom';
 export default function Map({
   viewport,
   setViewport,
-  userCoords,
   setUserCoords,
   showPopup,
   setShowPopup,
   selectedUser,
   setSelectedUser,
 }) {
-  const { profile, loading, setLoading } = useProfile();
+  const { loading } = useProfile();
   const { group } = useGroup();
-  
+
   if (loading && group.length < 1) return <h1>loading</h1>;
   return (
     <div className={styles.map}>
@@ -37,7 +36,6 @@ export default function Map({
         onMove={(e) => setViewport(e.viewState)}
       >
         <NavButton className="fixed right-0" />
-
         <NavigationControl />
         <GeolocateControl
           positionOptions={{ enableHighAccuracy: true }}
@@ -49,57 +47,44 @@ export default function Map({
             })
           }
         />
-        <Marker
-          longitude={userCoords.longitude}
-          latitude={userCoords.latitude}
-          anchor="bottom"
-        >
-          <button
-            onClick={() => {
-              setSelectedUser(user);
-            }}
-          >
-            {profile.avatar}
-          </button>
-        </Marker>
-        <Popup
-          className="text-slate-800"
-          longitude={userCoords.longitude}
-          latitude={userCoords.latitude}
-          anchor="top-right"
-        >
-          <strong>{profile.username}</strong> <br />
-          {profile.status}
-          <br /> 4:20 PM
-        </Popup>
         {group.map((user) => (
-          <div key={user.username}>
-            <Marker
-              longitude={user.coords.longitude}
-              latitude={user.coords.latitude}
-              anchor="bottom"
+          <Marker
+            key={user.username}
+            longitude={user.coords.longitude}
+            latitude={user.coords.latitude}
+            anchor="bottom"
+          >
+            <button
+              className="text-2xl"
+              onClick={(e) => {
+                e.preventDefault();
+                setSelectedUser(user);
+                setShowPopup(!showPopup);
+              }}
             >
-              <button
-                onClick={() => {
-                  setSelectedUser(user);
-                }}
-              >
-                {user.avatar}
-              </button>
-            </Marker>
-            <Popup
-              className="text-slate-800"
-              longitude={user.coords.longitude}
-              latitude={user.coords.latitude}
-              anchor="top-right"
-            >
-              <Link to={`/profile/${user.username}`}>{user.username}</Link>{' '}
-              <br />
-              {user.status}
-              <br /> 2:40 PM
-            </Popup>
-          </div>
+              {user.avatar}
+            </button>
+          </Marker>
         ))}
+        {showPopup && selectedUser && (
+          <Popup
+            className="text-slate-800"
+            longitude={selectedUser.coords.longitude}
+            latitude={selectedUser.coords.latitude}
+            anchor="top-right"
+            closeButton={false}
+            closeOnClick={false}
+          >
+            <Link
+              className="font-extrabold"
+              to={`/profile/${selectedUser.username}`}
+            >
+              {selectedUser.username}
+            </Link>{' '}
+            ({selectedUser.first_name})<p>{selectedUser.status}</p>
+            <p>{selectedUser.updated_at}</p>
+          </Popup>
+        )}
       </ReactMapGL>
     </div>
   );
