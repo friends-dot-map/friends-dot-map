@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { getAllProfiles } from '../services/profiles';
+import { useProfile } from './ProfileContext';
 
 export const GroupContext = createContext();
 
 const GroupProvider = ({ children }) => {
   const [group, setGroup] = useState([]);
+  const { profile } = useProfile();
 
   useEffect(() => {
     const fetchGroup = async () => {
@@ -16,7 +18,7 @@ const GroupProvider = ({ children }) => {
       }
     };
     fetchGroup();
-  }, []);
+  }, [profile]);
   const groupValue = { group, setGroup };
   return (
     <GroupContext.Provider value={groupValue}>{children}</GroupContext.Provider>

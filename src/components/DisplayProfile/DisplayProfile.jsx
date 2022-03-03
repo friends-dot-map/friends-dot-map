@@ -7,16 +7,10 @@ import { useGroup } from '../../context/GroupContext';
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
   const [newStatus, setNewStatus] = useState('');
-  const {
-    loading,
-    userCoords,
-    profile: { user_id },
-    setProfile,
-  } = useProfile();
+  const { loading, userCoords, profile, setProfile } = useProfile();
   const params = useParams();
   const history = useHistory();
   const { group } = useGroup();
-
 
   const [currentProfile] = group.filter(
     (user) => user.username === params.username
@@ -24,19 +18,21 @@ export default function DisplayProfile() {
 
   const handleStatus = async () => {
     try {
-      const [data] = await updateStatus(newStatus, userCoords, user_id);
-      console.log(data);
+      console.log(userCoords);
+      const [data] = await updateStatus(newStatus, userCoords, profile.user_id);
+      console.log({ data });
       setProfile((prevState) => ({
-        ...prevState, status: data.status, coords: data.coords
-      }))
+        ...prevState,
+        status: data.status,
+        coords: data.coords,
+      }));
       console.log(profile);
       setStatusEdit(false);
     } catch (error) {
+      console.log(error);
       throw new Error('Was not able to update status');
-    } 
-      history.push('/');
-    
-    
+    }
+    history.push('/');
   };
 
   if (loading) return <h1>Loading....</h1>;
