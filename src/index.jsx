@@ -6,7 +6,7 @@ import { UserProvider } from './context/userContext';
 
 import './style.css';
 import { ProfileProvider } from './context/ProfileContext';
-import { GroupProvider } from './context/groupContext';
+import { GroupProvider } from './context/GroupContext';
 
 render(
   <React.StrictMode>
