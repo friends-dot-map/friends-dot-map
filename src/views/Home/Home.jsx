@@ -12,7 +12,7 @@ export default function Home() {
     zoom: 15,
   });
 
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {

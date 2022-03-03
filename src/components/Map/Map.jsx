@@ -30,7 +30,7 @@ export default function Map({
       <ReactMapGL
         {...viewport}
         reuseMaps
-        style={{ position: 'relative', width: '100%', height: '100%' }}
+        style={{ position: 'relative', width: '100vw', height: '100vh' }}
         mapStyle="mapbox://styles/mapbox/dark-v10"
         mapboxAccessToken={process.env.MapboxAccessToken}
         onMove={(e) => setViewport(e.viewState)}
@@ -59,7 +59,7 @@ export default function Map({
               onClick={(e) => {
                 e.preventDefault();
                 setSelectedUser(user);
-                setShowPopup(!showPopup);
+                setShowPopup(true);
               }}
             >
               {user.avatar}
