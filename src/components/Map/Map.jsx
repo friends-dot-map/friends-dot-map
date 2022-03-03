@@ -82,7 +82,8 @@ export default function Map({
             >
               {selectedUser.username}
             </Link>{' '}
-            ({selectedUser.first_name})<p>{selectedUser.status}</p>
+            {selectedUser?.first_name}
+            <p>{selectedUser.status}</p>
             <p>{selectedUser.updated_at}</p>
           </Popup>
         )}
