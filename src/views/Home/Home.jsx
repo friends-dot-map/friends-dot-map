@@ -32,8 +32,6 @@ export default function Home() {
     fetchLocation();
   }, []);
 
-  console.log(userCoords);
-
   if (loading) return <h1>loading...</h1>;
 
   return (

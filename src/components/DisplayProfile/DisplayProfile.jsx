@@ -1,7 +1,8 @@
 import { useProfile } from '../../context/ProfileContext';
 import { useState } from 'react';
 import { updateStatus } from '../../services/profiles';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { useGroup } from '../../context/GroupContext';
 
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
@@ -11,8 +12,13 @@ export default function DisplayProfile() {
     userCoords,
     profile: { username, first_name, likes, avatar, status, user_id, coords },
   } = useProfile();
-
+  const params = useParams();
   const history = useHistory();
+  const { group } = useGroup();
+
+  const [currentProfile] = group.filter(
+    (user) => user.username === params.username
+  );
 
   const handleStatus = async () => {
     try {
@@ -28,10 +34,10 @@ export default function DisplayProfile() {
 
   return (
     <div>
-      <p>{avatar}</p>
-      <p>{username}</p>
-      <p>{first_name}</p>
-      <p>{likes}</p>
+      <p>{currentProfile.avatar}</p>
+      <p>{currentProfile.username}</p>
+      <p>{currentProfile.first_name}</p>
+      <p>{currentProfile.likes}</p>
       {statusEdit ? (
         <>
           <input
@@ -43,7 +49,7 @@ export default function DisplayProfile() {
         </>
       ) : (
         <>
-          <p>{status}</p>
+          <p>{currentProfile.status}</p>
           <button
             onClick={() => {
               setStatusEdit(true);
@@ -53,6 +59,9 @@ export default function DisplayProfile() {
           </button>
         </>
       )}
+      <button>
+        <Link to="/edit">Edit Profile</Link>
+      </button>
     </div>
   );
 }

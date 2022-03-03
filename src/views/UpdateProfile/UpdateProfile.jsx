@@ -44,7 +44,6 @@ export default function UpdateProfile({ isCreating = false }) {
   const handleDeleteProfile = async () => {
     try {
       await deleteProfileByEmail(user.email);
-      console.log('delete successful');
     } catch (error) {
       throw error;
     }

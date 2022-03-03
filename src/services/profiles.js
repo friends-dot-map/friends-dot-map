@@ -48,7 +48,7 @@ export async function updateStatus(status, coords, user_id) {
       coords: { latitude: coords.latitude, longitude: coords.longitude },
     })
     .match({ user_id });
-  console.log(request);
+
   return parseData(request);
 }
 
