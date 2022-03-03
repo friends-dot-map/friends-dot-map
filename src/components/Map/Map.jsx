@@ -8,7 +8,7 @@ import ReactMapGL, {
 import NavButton from '../NavButton/NavButton';
 import styles from './Map.module.css';
 import { useProfile } from '../../context/ProfileContext';
-import { useGroup } from '../../context/groupContext';
+import { useGroup } from '../../context/GroupContext';
 
 export default function Map({
   viewport,
