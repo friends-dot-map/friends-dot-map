@@ -1,14 +1,13 @@
-import React from 'react';
 import { useHistory } from 'react-router-dom';
-import AuthForm from '../../components/AuthForm/AuthForm';
+import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
-import { useUser } from '../../context/userContext';
 import { signUpUser, signInUser } from '../../services/users';
+import AuthForm from '../../components/AuthForm/AuthForm';
 
 export default function Auth({ isSigningUp = false }) {
+  const { setProfile } = useProfile();
   const { setUser } = useUser();
   const history = useHistory();
-  const { setProfile } = useProfile();
 
   const handleAuth = async (email, password) => {
     try {
@@ -26,9 +25,5 @@ export default function Auth({ isSigningUp = false }) {
       throw error;
     }
   };
-  return (
-    <div>
-      <AuthForm handleAuth={handleAuth} isSigningUp={isSigningUp} />
-    </div>
-  );
+  return <AuthForm handleAuth={handleAuth} isSigningUp={isSigningUp} />;
 }

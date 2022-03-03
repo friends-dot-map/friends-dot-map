@@ -1,15 +1,14 @@
-import React from 'react';
 import ReactMapGL, {
   GeolocateControl,
   Marker,
   NavigationControl,
   Popup,
 } from 'react-map-gl';
-import NavButton from '../NavButton/NavButton';
-import styles from './Map.module.css';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import { Link } from 'react-router-dom';
+import NavButton from '../NavButton/NavButton';
+import styles from './Map.module.css';
 
 export default function Map({
   viewport,
@@ -23,10 +22,11 @@ export default function Map({
   const { loading } = useProfile();
   const { group } = useGroup();
 
-  if (loading && group.length < 1) return <h1>loading</h1>;
+  if (loading && group.length < 1)
+    return <div aria-label="loader">loading</div>;
+
   return (
     <div className={styles.map}>
-      <h1 className="text-slate-100">friends.map()</h1>
       <ReactMapGL
         {...viewport}
         reuseMaps
@@ -81,7 +81,7 @@ export default function Map({
               to={`/profile/${selectedUser.username}`}
             >
               {selectedUser.username}
-            </Link>{' '}
+            </Link>
             {selectedUser?.first_name}
             <p>{selectedUser.status}</p>
             <p>{selectedUser.updated_at}</p>

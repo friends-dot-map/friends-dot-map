@@ -10,6 +10,11 @@ export async function getProfile(email) {
   return parseData(request);
 }
 
+export async function getAllProfiles() {
+  const request = await client.from('profiles').select('*');
+  return parseData(request);
+}
+
 export async function createProfile({
   user_id,
   email,
@@ -19,18 +24,16 @@ export async function createProfile({
   avatar,
   likes,
 }) {
-  const request = await client
-    .from('profiles')
-    .insert({
-      user_id,
-      email,
-      username,
-      first_name,
-      status,
-      avatar,
-      likes,
-      updated_at: formatDate(),
-    });
+  const request = await client.from('profiles').insert({
+    user_id,
+    email,
+    username,
+    first_name,
+    status,
+    avatar,
+    likes,
+    updated_at: formatDate(),
+  });
   return parseData(request);
 }
 
@@ -74,10 +77,5 @@ export async function updateStatus(status, coords, user_id) {
 
 export async function deleteProfileByEmail(email) {
   const request = await client.from('profiles').delete().match({ email });
-  return parseData(request);
-}
-
-export async function getAllProfiles() {
-  const request = await client.from('profiles').select('*');
   return parseData(request);
 }

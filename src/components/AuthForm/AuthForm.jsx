@@ -12,7 +12,6 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
 
   return (
     <div>
-      <h1>friends.map()</h1>
       <form>
         <label>
           email:

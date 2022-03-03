@@ -1,16 +1,16 @@
-import { useProfile } from '../../context/ProfileContext';
 import { useState } from 'react';
 import { updateStatus } from '../../services/profiles';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
   const [newStatus, setNewStatus] = useState('');
   const { loading, userCoords, profile, setProfile } = useProfile();
+  const { group } = useGroup();
   const params = useParams();
   const history = useHistory();
-  const { group } = useGroup();
 
   const [currentProfile] = group.filter(
     (user) => user.username === params.username
@@ -18,31 +18,29 @@ export default function DisplayProfile() {
 
   const handleStatus = async () => {
     try {
-      console.log(userCoords);
       const [data] = await updateStatus(newStatus, userCoords, profile.user_id);
-      console.log({ data });
       setProfile((prevState) => ({
         ...prevState,
         status: data.status,
         coords: data.coords,
       }));
-      console.log(profile);
       setStatusEdit(false);
     } catch (error) {
-      console.log(error);
       throw new Error('Was not able to update status');
     }
     history.push('/');
   };
 
-  if (loading) return <h1>Loading....</h1>;
+  if (loading) return <div aria-label="loader">Loading....</div>;
 
   return (
-    <div>
-      <p>{currentProfile.avatar}</p>
-      <p>{currentProfile.username}</p>
-      <p>{currentProfile.first_name}</p>
-      <p>{currentProfile.likes}</p>
+    <>
+      <ul>
+        <li>{currentProfile.avatar}</li>
+        <li>{currentProfile.username}</li>
+        <li>{currentProfile.first_name}</li>
+        <li>{currentProfile.likes}</li>
+      </ul>
       {statusEdit ? (
         <>
           <input
@@ -67,6 +65,6 @@ export default function DisplayProfile() {
       <button>
         <Link to="/edit">Edit Profile</Link>
       </button>
-    </div>
+    </>
   );
 }
