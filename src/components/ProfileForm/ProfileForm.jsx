@@ -66,17 +66,7 @@ export default function ProfileForm({
             }}
           />
         </label>
-        <label>
-          Status
-          <input
-            placeholder="what are you up to?"
-            value={status}
-            type="text"
-            onChange={(e) => {
-              updateProfileForm('status', e.target.value);
-            }}
-          />
-        </label>
+        
         <button>Submit</button>
       </form>
       {!isCreating && (
