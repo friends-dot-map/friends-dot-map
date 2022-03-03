@@ -1,6 +1,7 @@
 import './App.css'; /* Global CSS */
 import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
+import Group from './views/Group/Group';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import UpdateProfile from './views/UpdateProfile/UpdateProfile';
 import DisplayProfile from './components/DisplayProfile/DisplayProfile';
@@ -34,6 +35,9 @@ export default function App() {
           <DisplayProfile />
         </PrivateRoute>
 
+        <PrivateRoute path="/group">
+          <Group />
+        </PrivateRoute>
       </Switch>
     </BrowserRouter>
   );
