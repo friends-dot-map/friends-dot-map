@@ -44,7 +44,7 @@ export async function updateStatus(status, coords, user_id) {
   const request = await client
     .from('profiles')
     .update({
-        status,
+      status,
       coords: { latitude: coords.latitude, longitude: coords.longitude },
     })
     .match({ user_id });
@@ -54,5 +54,10 @@ export async function updateStatus(status, coords, user_id) {
 
 export async function deleteProfileByEmail(email) {
   const request = await client.from('profiles').delete().match({ email });
+  return parseData(request);
+}
+
+export async function getAllProfiles() {
+  const request = await client.from('profiles').select('*');
   return parseData(request);
 }
