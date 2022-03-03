@@ -13,6 +13,7 @@ function classNames(...classes) {
 export default function NavButton() {
   const { setUser } = useUser();
   const {
+    setProfile,
     profile: { username },
   } = useProfile();
   return (
@@ -79,6 +80,7 @@ export default function NavButton() {
                   onClick={async () => {
                     await signOutUser();
                     setUser({});
+                    setProfile({})
                   }}
                   type="submit"
                   className={classNames(

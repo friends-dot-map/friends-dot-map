@@ -11,10 +11,12 @@ export default function DisplayProfile() {
     loading,
     userCoords,
     profile: { user_id },
+    setProfile,
   } = useProfile();
   const params = useParams();
   const history = useHistory();
   const { group } = useGroup();
+
 
   const [currentProfile] = group.filter(
     (user) => user.username === params.username
@@ -22,12 +24,19 @@ export default function DisplayProfile() {
 
   const handleStatus = async () => {
     try {
-      await updateStatus(newStatus, userCoords, user_id);
+      const [data] = await updateStatus(newStatus, userCoords, user_id);
+      console.log(data);
+      setProfile((prevState) => ({
+        ...prevState, status: data.status, coords: data.coords
+      }))
+      console.log(profile);
       setStatusEdit(false);
-      history.push('/');
     } catch (error) {
       throw new Error('Was not able to update status');
-    }
+    } 
+      history.push('/');
+    
+    
   };
 
   if (loading) return <h1>Loading....</h1>;

@@ -15,7 +15,7 @@ export default function ProfileForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleProfile(username, first_name, status, avatar, likes);
-    history.replace(`/profile/${username}`);
+    history.replace('/');
   };
 
   return (
@@ -66,17 +66,7 @@ export default function ProfileForm({
             }}
           />
         </label>
-        <label>
-          Status
-          <input
-            placeholder="what are you up to?"
-            value={status}
-            type="text"
-            onChange={(e) => {
-              updateProfileForm('status', e.target.value);
-            }}
-          />
-        </label>
+        
         <button>Submit</button>
       </form>
       {!isCreating && (
