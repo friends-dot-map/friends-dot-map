@@ -8,9 +8,7 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between flex-wrap p-6">
       <div className="flex justify-between items-center flex-no-shrink text-white mr-6">
-        <span className="font-semibold text-xl tracking-tight">
-          friends.map()
-        </span>
+        <h1 className="font-semibold text-xl tracking-tight">friends.map()</h1>
       </div>
       <div className="w-full flex-grow justify-between flex lg:items-center lg:w-auto">
         <div className="text-sm flex-grow"></div>
