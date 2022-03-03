@@ -72,11 +72,12 @@ export default function Map({
             longitude={selectedUser.coords.longitude}
             latitude={selectedUser.coords.latitude}
             anchor="top-right"
+            focusAfterOpen
             closeButton={false}
             closeOnClick={false}
           >
             <Link
-              className="font-extrabold"
+              className="font-bold"
               to={`/profile/${selectedUser.username}`}
             >
               {selectedUser.username}
