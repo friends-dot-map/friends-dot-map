@@ -7,32 +7,8 @@ import ReactMapGL, {
 } from 'react-map-gl';
 import NavButton from '../NavButton/NavButton';
 import styles from './Map.module.css';
-
 import { useProfile } from '../../context/ProfileContext';
-
-const otherUsers = [
-  {
-    username: 'Stella',
-    avatar: '☕',
-    status: 'why is this coffee shop SO busy',
-    latitude: 45.415087,
-    longitude: -122.58135,
-  },
-  {
-    username: 'Bailey',
-    avatar: '😭',
-    status: 'these cajun tots are WHACK',
-    latitude: 45.51226,
-    longitude: -122.64917,
-  },
-  {
-    username: 'Violet',
-    avatar: '💃',
-    status: 'party at mount tabor',
-    latitude: 45.518,
-    longitude: -122.5948,
-  },
-];
+import { useGroup } from '../../context/groupContext';
 
 export default function Map({
   viewport,
@@ -44,7 +20,10 @@ export default function Map({
   selectedUser,
   setSelectedUser,
 }) {
-  const { profile } = useProfile();
+  const { profile, loading, setLoading } = useProfile();
+  const { group } = useGroup();
+  console.log(group);
+  if (loading && group.length < 1) return <h1>loading</h1>;
   return (
     <div className={styles.map}>
       <h1 className="text-slate-100">friends.map()</h1>
@@ -92,11 +71,11 @@ export default function Map({
           {profile.status}
           <br /> 4:20 PM
         </Popup>
-        {otherUsers.map((user) => (
+        {group.map((user) => (
           <div key={user.username}>
             <Marker
-              longitude={user.longitude}
-              latitude={user.latitude}
+              longitude={user.coords.longitude}
+              latitude={user.coords.latitude}
               anchor="bottom"
             >
               <button
@@ -109,8 +88,8 @@ export default function Map({
             </Marker>
             <Popup
               className="text-slate-800"
-              longitude={user.longitude}
-              latitude={user.latitude}
+              longitude={user.coords.longitude}
+              latitude={user.coords.latitude}
               anchor="top-right"
             >
               <strong>{user.username}</strong> <br />
