@@ -3,8 +3,9 @@ import { useProfile } from '../../context/ProfileContext';
 import Map from '../../components/Map/Map';
 
 export default function Home() {
-  const { userCoords, setUserCoords } = useProfile();
-  const [loading, setLoading] = useState(true);
+  const { userCoords, setUserCoords, loading, setLoading, profile } =
+    useProfile();
+  // const [loading, setLoading] = useState(true);
 
   const [viewport, setViewport] = useState({
     latitude: '',
@@ -25,12 +26,11 @@ export default function Home() {
             latitude,
             longitude,
           });
-          setLoading(false);
         }
       });
     };
     fetchLocation();
-  }, []);
+  }, [profile]);
 
   if (loading) return <h1>loading...</h1>;
 

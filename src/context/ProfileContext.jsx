@@ -6,7 +6,7 @@ import { formatDate } from '../utils/utils';
 export const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
-  const [userCoords, setUserCoords] = useState({});
+  const [userCoords, setUserCoords] = useState({ latitude: '', longitude: '' });
 
   const [profile, setProfile] = useState({
     username: '',
