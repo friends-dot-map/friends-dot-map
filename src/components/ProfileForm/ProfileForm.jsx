@@ -15,7 +15,7 @@ export default function ProfileForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleProfile(username, first_name, status, avatar, likes);
-    history.replace(`/profile/${username}`);
+    history.replace('/');
   };
 
   return (

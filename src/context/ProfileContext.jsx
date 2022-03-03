@@ -26,7 +26,7 @@ const ProfileProvider = ({ children }) => {
         const profileData = await getProfile(user.email);
         setProfile(profileData);
       } catch (error) {
-        throw new Error('Could not fetch profile');
+        setProfile({});
       }
       setLoading(false);
     };
