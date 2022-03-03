@@ -6,12 +6,15 @@ import { UserProvider } from './context/userContext';
 
 import './style.css';
 import { ProfileProvider } from './context/ProfileContext';
+import { GroupProvider } from './context/GroupContext';
 
 render(
   <React.StrictMode>
     <UserProvider>
       <ProfileProvider>
-        <App />
+        <GroupProvider>
+          <App />
+        </GroupProvider>
       </ProfileProvider>
     </UserProvider>
   </React.StrictMode>,
