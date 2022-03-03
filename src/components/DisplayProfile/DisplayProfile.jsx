@@ -12,9 +12,6 @@ export default function DisplayProfile() {
     profile: { username, first_name, likes, avatar, status, user_id, coords },
   } = useProfile();
 
-  console.log('coords', coords);
-  console.log('userCoords', userCoords);
-
   const history = useHistory();
 
   const handleStatus = async () => {

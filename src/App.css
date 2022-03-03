@@ -5,4 +5,9 @@ html,
 body {
   @apply bg-slate-800;
   @apply h-full;
+  @apply text-slate-100;
+}
+
+input {
+  @apply bg-transparent;
 }
