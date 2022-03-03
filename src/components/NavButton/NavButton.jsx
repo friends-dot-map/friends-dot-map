@@ -4,6 +4,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 import { Link } from 'react-router-dom';
 import { signOutUser } from '../../services/users';
 import { useUser } from '../../context/userContext';
+import { useProfile } from '../../context/ProfileContext';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -11,6 +12,9 @@ function classNames(...classes) {
 
 export default function NavButton() {
   const { setUser } = useUser();
+  const {
+    profile: { username },
+  } = useProfile();
   return (
     <Menu as="div" className="absolute right-0 top-40 inline-block text-left">
       <div>
@@ -45,7 +49,7 @@ export default function NavButton() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  to="/profile/kitkat"
+                  to="/profile/pepperdan"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'

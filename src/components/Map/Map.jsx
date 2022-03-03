@@ -8,6 +8,8 @@ import ReactMapGL, {
 import NavButton from '../NavButton/NavButton';
 import styles from './Map.module.css';
 
+import { useProfile } from '../../context/ProfileContext';
+
 const otherUsers = [
   {
     username: 'Stella',
@@ -42,6 +44,7 @@ export default function Map({
   selectedUser,
   setSelectedUser,
 }) {
+  const { profile } = useProfile();
   return (
     <div className={styles.map}>
       <h1 className="text-slate-100">friends.map()</h1>
@@ -66,6 +69,29 @@ export default function Map({
             })
           }
         />
+        <Marker
+          longitude={userCoords.longitude}
+          latitude={userCoords.latitude}
+          anchor="bottom"
+        >
+          <button
+            onClick={() => {
+              setSelectedUser(user);
+            }}
+          >
+            {profile.avatar}
+          </button>
+        </Marker>
+        <Popup
+          className="text-slate-800"
+          longitude={userCoords.longitude}
+          latitude={userCoords.latitude}
+          anchor="top-right"
+        >
+          <strong>{profile.username}</strong> <br />
+          {profile.status}
+          <br /> 4:20 PM
+        </Popup>
         {otherUsers.map((user) => (
           <div key={user.username}>
             <Marker
@@ -81,33 +107,18 @@ export default function Map({
                 {user.avatar}
               </button>
             </Marker>
-            {selectedUser && (
-              <Popup
-                longitude={user.longitude}
-                latitude={user.latitude}
-                anchor="top-right"
-                onClose={() => setSelectedUser(null)}
-              >
-                <strong>{user.username}</strong> <br />
-                {user.status}
-                <br /> 2:40 PM
-              </Popup>
-            )}
+            <Popup
+              className="text-slate-800"
+              longitude={user.longitude}
+              latitude={user.latitude}
+              anchor="top-right"
+            >
+              <strong>{user.username}</strong> <br />
+              {user.status}
+              <br /> 2:40 PM
+            </Popup>
           </div>
         ))}
-
-        {/* {showPopup && userCoords && (
-          <Popup
-            longitude={userCoords.longitude}
-            latitude={userCoords.latitude}
-            anchor="bottom-left"
-            onClose={() => setShowPopup(false)}
-          >
-            <strong>Jordan</strong> <br />
-            gone Phishin', 3.0 baby
-            <br /> 11:11 PM
-          </Popup>
-        )} */}
       </ReactMapGL>
     </div>
   );
