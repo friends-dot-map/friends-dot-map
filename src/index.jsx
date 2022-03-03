@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import { UserProvider } from './context/UserContext';
+import { UserProvider } from './context/SomethingElse';
 import { ProfileProvider } from './context/ProfileContext';
 import { GroupProvider } from './context/GroupContext';
 import App from './App';
