@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth form renders login page 1`] = `
+<div>
+  <form>
+    <label>
+      Username
+      <input
+        placeholder="make it unique"
+        type="text"
+        value=""
+      />
+    </label>
+    <label>
+      First Name
+      <input
+        placeholder="enter your name"
+        type="text"
+        value=""
+      />
+    </label>
+    <label>
+      Likes
+      <input
+        placeholder="enter your likes"
+        type="text"
+        value=""
+      />
+    </label>
+    <label>
+      Avatar
+      <input
+        placeholder="select an emoji"
+        type="text"
+        value=""
+      />
+    </label>
+    <button>
+      Submit
+    </button>
+  </form>
+</div>
+`;

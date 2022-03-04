@@ -1,9 +1,9 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Auth from './views/Auth/Auth';
 import Home from './views/Home/Home';
-import Group from './views/Group/Group';
 import UpdateProfile from './views/UpdateProfile/UpdateProfile';
 import Header from './components/Header/Header';
+import Group from './components/Group/Group';
 import DisplayProfile from './components/DisplayProfile/DisplayProfile';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import styles from './App.module.css';

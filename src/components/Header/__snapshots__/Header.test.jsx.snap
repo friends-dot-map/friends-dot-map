@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the header 1`] = `
+<div>
+  <header
+    class="flex items-center justify-between flex-wrap p-6"
+  >
+    <div
+      class="flex justify-between items-center flex-no-shrink text-white mr-6"
+    >
+      <h1
+        class="font-semibold text-xl tracking-tight"
+      >
+        friends.map()
+      </h1>
+    </div>
+    <div
+      class="w-full flex-grow justify-between flex lg:items-center lg:w-auto"
+    >
+      <div
+        class="text-sm flex-grow"
+      />
+      <div>
+        <a
+          href="/login"
+        >
+          <button
+            class=" text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 mt-0"
+          >
+            Log In
+          </button>
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
+`;
