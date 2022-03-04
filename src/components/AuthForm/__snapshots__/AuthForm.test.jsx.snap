@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth form renders login page 1`] = `
+<div>
+  <div>
+    <form>
+      <label>
+        email:
+        <input
+          placeholder="please enter your email"
+          type="email"
+          value=""
+        />
+      </label>
+      <label>
+        password:
+        <input
+          placeholder="please enter your password"
+          type="password"
+          value=""
+        />
+      </label>
+      <button>
+        Register
+      </button>
+    </form>
+    <p>
+      a convenient travel companion to keep your group safe and organized when in unfamiliar places
+    </p>
+    <p>
+      Already have an account? 
+      <a
+        href="/login"
+      >
+        Log In
+      </a>
+    </p>
+  </div>
+</div>
+`;
