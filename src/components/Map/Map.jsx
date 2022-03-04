@@ -7,8 +7,6 @@ import ReactMapGL, {
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import { Link } from 'react-router-dom';
-import NavButton from '../NavButton/NavButton';
-// import styles from './Map.module.css';
 
 export default function Map({
   viewport,
@@ -23,7 +21,11 @@ export default function Map({
   const { group } = useGroup();
 
   if (loading && group.length < 1)
-    return <div aria-label="loader">loading</div>;
+    return (
+      <div aria-label="loader" className="bg-dark w-screen h-screen">
+        <Loader />
+      </div>
+    );
 
   return (
     <div className="block absolute top-0 w-screen h-screen">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import Map from '../../components/Map/Map';
-import Header from '../../components/Header/Header';
+import Loader from '../../components/Loader/Loader';
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(true);
@@ -29,7 +29,12 @@ export default function Home() {
     fetchLocation();
   }, [profile]);
 
-  if (loading) return <div aria-label="loader">Loading...</div>;
+  if (loading)
+    return (
+      <div aria-label="loader" className="bg-dark w-screen h-screen">
+        <Loader />
+      </div>
+    );
 
   return (
     <Map

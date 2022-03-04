@@ -34,30 +34,44 @@ export default function DisplayProfile() {
   if (loading) return <div aria-label="loader">Loading....</div>;
 
   return (
-    <div className="flex flex-col text-center items-center justify-evenly p-1 h-5/6">
-      <p className="text-6xl">{currentProfile.avatar}</p>
-      <h2 className="text-4xl font-cursive tracking-wider">
-        {currentProfile.username}
-      </h2>
-      <p>({currentProfile.first_name})</p>
-      <label htmlFor="status" className="text-2xl font-cursive tracking-wider">
-        Currently...
-      </label>
-      <p id="status">{currentProfile.status}</p>
-      {profile.username === currentProfile.username && (
+    <div className="flex flex-col text-center items-center justify-evenly p-1 h-2/3">
+      <p className="text-9xl">{currentProfile.avatar}</p>
+      <div className="space-y-1">
+        <h2 className="text-5xl font-cursive tracking-wider">
+          {currentProfile.username}
+        </h2>
+        <p>({currentProfile.first_name})</p>
+      </div>
+
+      {profile.username === currentProfile.username ? (
         <>
+          <label
+            htmlFor="status"
+            className="text-2xl font-cursive tracking-wider"
+          >
+            Current Status
+          </label>
           {statusEdit ? (
             <>
               <input
+                className="rounded-md text-center align-middle p-1"
                 value={newStatus}
                 onChange={(e) => setNewStatus(e.target.value)}
+                placeholder={currentProfile.status}
                 type="text"
               />
-              <button onClick={handleStatus}>Post Status</button>
+              <button
+                className="bg-teal text-white w-1/2 p-2 rounded-md"
+                onClick={handleStatus}
+              >
+                Post Status
+              </button>
             </>
           ) : (
             <>
+              <p id="status">{currentProfile.status}</p>
               <button
+                className="bg-teal text-white w-1/2 p-2 rounded-md"
                 onClick={() => {
                   setStatusEdit(true);
                 }}
@@ -67,13 +81,23 @@ export default function DisplayProfile() {
             </>
           )}
         </>
+      ) : (
+        <>
+          <label
+            htmlFor="status"
+            className="text-2xl font-cursive tracking-wider"
+          >
+            Current Status
+          </label>
+          <p id="status">{currentProfile.status}</p>
+        </>
       )}
       <label htmlFor="likes" className="text-2xl font-cursive tracking-wider">
-        I like...
+        Likes
       </label>
       <p id="likes">{currentProfile.likes}</p>
       {profile.username === currentProfile.username && (
-        <button>
+        <button className=" bg-teal/75 text-white w-1/2 p-2 rounded-md">
           <Link to="/edit">Edit Profile</Link>
         </button>
       )}

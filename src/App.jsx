@@ -27,7 +27,7 @@ export default function App() {
 
           <PrivateRoute exact path="/">
             <Home />
-            <div className="h-1/6"></div>
+            <div className="bg-dark w-screen h-1/6"></div>
             {user.id && <Header />}
           </PrivateRoute>
 
