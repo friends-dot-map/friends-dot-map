@@ -1,43 +1,45 @@
-# adv-react-tailwind-template
+# We Are friends.map()
 
-This template is a modified version of our [React
-Template](https://github.com/alchemycodelab/react-template). It provides a way
-to use [Tailwind CSS](https://tailwindcss.com/) classes for styling React
-components by using just `className`s and no custom CSS.
+## a convenient travel companion to keep your group safe and organized when in unfamiliar places
 
-## Getting Started
+## Our Team :
 
-Click "Use this template" to create a new repo with your user as the owner. Then
-clone down the newly created repo and get hacking!
+- Jordan
+- Violet
+- Spencer
+- Bailey
 
-## Differences from the [React Template](https://github.com/alchemycodelab/react-template)
+## Supabase Tables:
 
-Currently, this template only supports [CSS
-modules](https://css-tricks.com/css-modules-part-1-need/) if the CSS filename
-matches `*.module.css`. What this means is that when you want to use custom
-styles for a component — and you don't want those styles applied globally —
-you'll need to create a `MyComponent.module.css` file, import it, and then use
-the CSS class names as the properties of your imported stylesheet in your JSX:
+### Profiles
 
-### Tailwind Template
+| column     | type        |
+| ---------- | ----------- |
+| id         | int8        |
+| created_at | timestamptz |
+| updated_at | timestamptz |
+| user_id    | uuid        |
+| username   | varchar     |
+| first_name | varchar     |
+| likes      | varchar     |
+| status     | varchar     |
+| avatar     | varchar     |
+| coords     | JSON{}      |
+| email      | varchar     |
 
-```css
-/* MyComponent.module.css */
-.myCustomCssClass {
- font-family: monospace;
-}
-```
+## Tech
 
-```js
-// MyComponent.jsx
-import styles from './MyComponent.module.css'
+### API
 
-export default function MyComponent() {
-  return (
-    <h1 className={`text-white ${styles.myCustomCssClass}`}>
-      Hello, World!
-    </h1>
-  );
-}
+https://www.mapbox.com/
 
-```
+### Libraries
+
+https://visgl.github.io/react-map-gl/
+
+### Styling
+
+https://tailwindcss.com/docs/installation
+
+Our Beautiful Miro:
+https://miro.com/app/board/uXjVOJ22WiM=/
