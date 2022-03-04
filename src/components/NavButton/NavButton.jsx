@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
+import { MenuIcon } from '@heroicons/react/solid';
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { useUser } from '../../context/UserContext';
@@ -20,8 +20,8 @@ export default function NavButton() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        <Menu.Button className="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-base font-medium text-dark hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+          <MenuIcon className="h-10 w-10" aria-hidden="true" />
         </Menu.Button>
       </div>
       <Transition
@@ -41,7 +41,7 @@ export default function NavButton() {
                   to="/"
                   className={classNames(
                     active ? 'bg-gray-100 text-red-500' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    'block px-4 py-2 text-lg'
                   )}
                 >
                   Home
@@ -54,7 +54,7 @@ export default function NavButton() {
                   to={`/profile/${username}`}
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    'block px-4 py-2 text-lg'
                   )}
                 >
                   Your Profile
@@ -67,7 +67,7 @@ export default function NavButton() {
                   to="/group"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    'block px-4 py-2 text-lg'
                   )}
                 >
                   Your Group
@@ -86,7 +86,7 @@ export default function NavButton() {
                   type="submit"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block w-full text-left px-4 py-2 text-sm'
+                    'block w-full text-left px-4 py-2 text-lg'
                   )}
                 >
                   Log out

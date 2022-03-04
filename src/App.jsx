@@ -8,12 +8,14 @@ import DisplayProfile from './components/DisplayProfile/DisplayProfile';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import styles from './App.module.css';
 import './App.css'; /* Global CSS */
+import { useUser } from './context/UserContext';
 
 export default function App() {
+  const { user } = useUser();
   return (
     <div className="bg-mint bg-opacity-90 h-screen">
       <BrowserRouter>
-        <Header />
+        {user.id && <Header />}
         <Switch>
           <Route path="/login">
             <Auth />
