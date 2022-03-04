@@ -27,7 +27,6 @@ export default function App() {
 
           <PrivateRoute exact path="/">
             <Home />
-            <div className="bg-dark w-screen h-1/6"></div>
           </PrivateRoute>
 
           <PrivateRoute path="/create">

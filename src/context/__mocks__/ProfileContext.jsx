@@ -15,7 +15,7 @@ const ProfileProvider = ({ mockProfile, children }) => {
     coords: userCoords,
     updated_at: formatDate(),
   });
-  const [loading, setLoading] = useState(true);
+  const [profileLoading, setProfileLoading] = useState(true);
   const { user } = useUser();
 
   useEffect(() => {
@@ -26,15 +26,14 @@ const ProfileProvider = ({ mockProfile, children }) => {
       } catch (error) {
         setProfile({});
       }
-      setLoading(false);
+      setProfileLoading(false);
     };
     fetchProfile();
   }, [user]);
 
   const profileValues = {
     profile,
-    loading,
-    setLoading,
+    profileLoading,
     setProfile,
     userCoords,
     setUserCoords,

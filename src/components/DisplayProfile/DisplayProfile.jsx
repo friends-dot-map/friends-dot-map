@@ -8,8 +8,8 @@ import Loader from '../Loader/Loader';
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
   const [newStatus, setNewStatus] = useState('');
-  const { loading, userCoords, profile, setProfile } = useProfile();
-  const { group } = useGroup();
+  const { profileLoading, userCoords, profile, setProfile } = useProfile();
+  const { groupLoading, group } = useGroup();
   const params = useParams();
   const history = useHistory();
 
@@ -27,12 +27,11 @@ export default function DisplayProfile() {
       }));
       setStatusEdit(false);
     } catch (error) {
-      throw new Error('Was not able to update status');
+      throw error;
     }
-    history.push('/');
   };
 
-  if (loading)
+  if (groupLoading || profileLoading)
     return (
       <div aria-label="loader">
         <Loader />
@@ -107,6 +106,9 @@ export default function DisplayProfile() {
           <Link to="/edit">Edit Profile</Link>
         </button>
       )}
+      <button className=" bg-teal/75 text-white w-1/2 p-2 rounded-md">
+        <Link to="/">Back to Map</Link>
+      </button>
     </div>
   );
 }
