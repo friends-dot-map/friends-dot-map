@@ -6,8 +6,8 @@ export default function Header() {
   const { user } = useUser();
 
   return (
-    <header className="flex items-center gap-7 justify-center p-6 flex-wrap">
-      <h1 className="text-dark font-semibold font-cursive text-3xl">
+    <header className="flex items-center gap-7 justify-center p-6 flex-wrap text-center">
+      <h1 className="text-dark font-semibold font-cursive text-4xl bg-olive bg-opacity-20 w-full p-5 rounded-md">
         <span className="text-teal">friends</span>.
         <span className="text-orange">map</span>(📍)
       </h1>
