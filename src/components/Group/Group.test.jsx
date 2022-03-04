@@ -1,17 +1,18 @@
-import DisplayProfile from './DisplayProfile';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { ProfileProvider } from '../../context/ProfileContext';
 import { GroupProvider } from '../../context/GroupContext';
+import { ProfileProvider } from '../../context/ProfileContext';
 import { UserProvider } from '../../context/UserContext';
 
-test('display profile renders', () => {
+import Group from './Group';
+
+test('should render the header', () => {
   const { container } = render(
     <UserProvider>
       <ProfileProvider>
         <GroupProvider>
           <MemoryRouter>
-            <DisplayProfile />
+            <Group />
           </MemoryRouter>
         </GroupProvider>
       </ProfileProvider>
