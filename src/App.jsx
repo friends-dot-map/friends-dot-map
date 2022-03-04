@@ -27,6 +27,8 @@ export default function App() {
 
           <PrivateRoute exact path="/">
             <Home />
+            <div className="h-1/6"></div>
+            {user.id && <Header />}
           </PrivateRoute>
 
           <PrivateRoute path="/create">

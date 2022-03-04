@@ -8,7 +8,7 @@ import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import { Link } from 'react-router-dom';
 import NavButton from '../NavButton/NavButton';
-import styles from './Map.module.css';
+// import styles from './Map.module.css';
 
 export default function Map({
   viewport,
@@ -26,16 +26,14 @@ export default function Map({
     return <div aria-label="loader">loading</div>;
 
   return (
-    <div className={styles.map}>
+    <div className="block absolute top-0 w-screen h-screen">
       <ReactMapGL
         {...viewport}
         reuseMaps
-        style={{ position: 'relative', width: '100vw', height: '100vh' }}
-        mapStyle="mapbox://styles/mapbox/dark-v10"
+        mapStyle="mapbox://styles/spencereagleton/cl0c0c2c5004914rh8164a271"
         mapboxAccessToken={process.env.MapboxAccessToken}
         onMove={(e) => setViewport(e.viewState)}
       >
-        <NavButton className="fixed right-0" />
         <NavigationControl />
         <GeolocateControl
           positionOptions={{ enableHighAccuracy: true }}
@@ -77,13 +75,12 @@ export default function Map({
             closeOnClick={false}
           >
             <Link
-              className="font-bold"
+              className="font-bold text-base"
               to={`/profile/${selectedUser.username}`}
             >
-              {selectedUser.username}
+              {selectedUser.username}{' '}
             </Link>
-            {selectedUser?.first_name}
-            <p>{selectedUser.status}</p>
+            ({selectedUser?.first_name})<p>{selectedUser.status}</p>
             <p>{selectedUser.updated_at}</p>
           </Popup>
         )}

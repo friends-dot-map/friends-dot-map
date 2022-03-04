@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import Map from '../../components/Map/Map';
+import Header from '../../components/Header/Header';
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(true);
