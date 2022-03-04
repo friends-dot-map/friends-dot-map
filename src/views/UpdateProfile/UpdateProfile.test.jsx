@@ -22,20 +22,8 @@ const mockUser = {
   password: 'ilovemonica',
 };
 
-const mockGroup = [
-  {
-    avatar: '🐶',
-    username: 'spongebob',
-    first_name: 'charles',
-    likes: 'snails',
-    status: 'rockin in the free world',
-    coords: { latitude: 69, longitude: 420 },
-  },
-];
-
 jest.mock('../../context/ProfileContext');
 jest.mock('../../context/UserContext');
-jest.mock('../../context/GroupContext');
 
 const handleSubmit = rest.get(
   'https://whltcdvprhlkmnqqqllw.supabase.co',

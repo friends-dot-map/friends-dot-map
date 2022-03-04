@@ -2,10 +2,32 @@
 
 exports[`display profile renders 1`] = `
 <div>
-  <div
-    aria-label="loader"
-  >
-    Loading....
-  </div>
+  <ul>
+    <li>
+      🐶
+    </li>
+    <li>
+      spongebob
+    </li>
+    <li>
+      charles
+    </li>
+    <li>
+      snails
+    </li>
+  </ul>
+  <p>
+    rockin in the free world
+  </p>
+  <button>
+    Update Status
+  </button>
+  <button>
+    <a
+      href="/edit"
+    >
+      Edit Profile
+    </a>
+  </button>
 </div>
 `;
