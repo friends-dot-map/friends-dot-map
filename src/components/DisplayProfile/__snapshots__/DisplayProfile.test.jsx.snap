@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth form renders login page 1`] = `
+<div>
+  <div
+    aria-label="loader"
+  >
+    Loading....
+  </div>
+</div>
+`;
