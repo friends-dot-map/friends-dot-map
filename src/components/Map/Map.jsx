@@ -8,6 +8,7 @@ import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import { Link } from 'react-router-dom';
 import NavButton from '../NavButton/NavButton';
+import Loader from '../Loader/Loader';
 
 export default function Map({
   viewport,

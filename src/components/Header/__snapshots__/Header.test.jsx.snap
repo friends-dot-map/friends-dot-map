@@ -3,33 +3,49 @@
 exports[`should render the header 1`] = `
 <div>
   <header
-    class="flex items-center justify-between flex-wrap p-6"
+    class="flex items-center gap-7 justify-between tracking-wider text-left bg-white ring-tint bg-opacity-40 w-full p-3 rounded-md"
   >
-    <div
-      class="flex justify-between items-center flex-no-shrink text-white mr-6"
+    <h1
+      class="text-dark font-semibold font-cursive text-3xl  "
     >
-      <h1
-        class="font-semibold text-xl tracking-tight"
+      <span
+        class="text-teal"
       >
-        friends.map()
-      </h1>
-    </div>
+        friends
+      </span>
+      .
+      <span
+        class="text-orange"
+      >
+        map
+      </span>
+      (🗺️)
+    </h1>
     <div
-      class="w-full flex-grow justify-between flex lg:items-center lg:w-auto"
+      class="relative inline-block text-left"
     >
-      <div
-        class="text-sm flex-grow"
-      />
       <div>
-        <a
-          href="/login"
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="bg-white/0 inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-base font-medium text-dark hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+          id="headlessui-menu-button-1"
+          type="button"
         >
-          <button
-            class=" text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white ring-tint mt-4 mt-0"
+          <svg
+            aria-hidden="true"
+            class="h-10 w-10"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Log In
-          </button>
-        </a>
+            <path
+              clip-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   </header>

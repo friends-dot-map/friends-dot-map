@@ -2,40 +2,92 @@
 
 exports[`auth form renders login page 1`] = `
 <div>
-  <form>
-    <label>
+  <form
+    class="flex flex-col space-y-2 justify-between h-3/4 p-5 items-center"
+  >
+    <label
+      class="font-cursive text-4xl tracking-wider"
+      for="username"
+    >
       Username
-      <input
-        placeholder="make it unique"
-        type="text"
-        value=""
-      />
     </label>
-    <label>
-      First Name
-      <input
-        placeholder="enter your name"
-        type="text"
-        value=""
-      />
+    <input
+      class="p-2 rounded-md text-center"
+      id="username"
+      placeholder="username"
+      required=""
+      type="text"
+      value=""
+    />
+    <label
+      class="font-cursive text-4xl tracking-wider"
+      for="first-name"
+    >
+      Your Name
     </label>
-    <label>
+    <input
+      class="p-2 rounded-md text-center"
+      id="first-name"
+      placeholder="your name"
+      type="text"
+      value=""
+    />
+    <label
+      class="font-cursive text-4xl tracking-wider"
+      for="likes"
+    >
       Likes
-      <input
-        placeholder="enter your likes"
-        type="text"
-        value=""
-      />
     </label>
-    <label>
-      Avatar
-      <input
-        placeholder="select an emoji"
-        type="text"
-        value=""
-      />
+    <input
+      class="p-2 rounded-md text-center"
+      id="likes"
+      placeholder="what are some of your interests?"
+      type="text"
+      value=""
+    />
+    <label
+      class="font-cursive text-4xl tracking-wider"
+      for="avatar"
+    >
+      User Icon
     </label>
-    <button>
+    <input
+      class="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl"
+      placeholder="🗺️"
+      type="text"
+      value=""
+    />
+    <p
+      class="text-sm text-center"
+    >
+      <em>
+        Tip
+      </em>
+      : to open an emoji keyboard on
+       
+      <span
+        class="font-bold"
+      >
+        MacOS
+      </span>
+      , use
+       
+      <span
+        class="font-bold"
+      >
+        Ctrl + Cmd + Space
+      </span>
+      ! For Windows, press 
+      <span
+        class="font-bold"
+      >
+        Windows key + .
+      </span>
+       
+    </p>
+    <button
+      class="bg-teal text-white text-lg w-1/2 p-2 rounded-md"
+    >
       Submit
     </button>
   </form>

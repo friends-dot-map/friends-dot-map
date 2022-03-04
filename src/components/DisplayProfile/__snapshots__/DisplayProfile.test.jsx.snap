@@ -2,32 +2,64 @@
 
 exports[`display profile renders 1`] = `
 <div>
-  <ul>
-    <li>
-      🐶
-    </li>
-    <li>
-      spongebob
-    </li>
-    <li>
-      charles
-    </li>
-    <li>
-      snails
-    </li>
-  </ul>
-  <p>
-    rockin in the free world
-  </p>
-  <button>
-    Update Status
-  </button>
-  <button>
-    <a
-      href="/edit"
+  <div
+    class="flex flex-col text-center items-center justify-evenly p-1 h-2/3"
+  >
+    <p
+      class="text-9xl"
     >
-      Edit Profile
-    </a>
-  </button>
+      🐶
+    </p>
+    <div
+      class="space-y-1"
+    >
+      <h2
+        class="text-5xl font-cursive tracking-wider"
+      >
+        spongebob
+      </h2>
+      <p>
+        (
+        charles
+        )
+      </p>
+    </div>
+    <label
+      class="text-2xl font-cursive tracking-wider"
+      for="status"
+    >
+      Current Status
+    </label>
+    <p
+      id="status"
+    >
+      rockin in the free world
+    </p>
+    <button
+      class="bg-teal text-white w-1/2 p-2 rounded-md"
+    >
+      Update Status
+    </button>
+    <label
+      class="text-2xl font-cursive tracking-wider"
+      for="likes"
+    >
+      Likes
+    </label>
+    <p
+      id="likes"
+    >
+      snails
+    </p>
+    <button
+      class=" bg-teal/75 text-white w-1/2 p-2 rounded-md"
+    >
+      <a
+        href="/edit"
+      >
+        Edit Profile
+      </a>
+    </button>
+  </div>
 </div>
 `;
