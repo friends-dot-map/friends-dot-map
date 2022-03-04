@@ -30,7 +30,7 @@ const ProfileProvider = ({ children }) => {
       setLoading(false);
     };
     fetchProfile();
-  }, []);
+  }, [user]);
 
   const profileValues = {
     profile,
