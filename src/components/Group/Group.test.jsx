@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Route } from 'react-router-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { GroupProvider } from '../../context/GroupContext';
 import { ProfileProvider } from '../../context/ProfileContext';
@@ -38,11 +39,13 @@ jest.mock('../../context/GroupContext');
 
 test('should render the header', () => {
   const { container } = render(
-    <UserProvider>
-      <ProfileProvider>
-        <GroupProvider>
-          <MemoryRouter>
-            <Group />
+    <UserProvider mockUser={mockUser}>
+      <ProfileProvider mockProfile={mockProfile}>
+        <GroupProvider mockGroup={mockGroup}>
+          <MemoryRouter initialEntries={['/group']}>
+            <Route path="/group">
+              <Group />
+            </Route>
           </MemoryRouter>
         </GroupProvider>
       </ProfileProvider>
@@ -50,4 +53,8 @@ test('should render the header', () => {
   );
 
   expect(container).toMatchSnapshot();
+
+  return waitFor(() => {
+    expect(screen.queryByLabelText(/loader/i)).not.toBeInTheDocument();
+  });
 });

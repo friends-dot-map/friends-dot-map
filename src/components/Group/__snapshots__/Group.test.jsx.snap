@@ -2,6 +2,16 @@
 
 exports[`should render the header 1`] = `
 <div>
-  <ul />
+  <ul>
+    <li>
+      <a
+        href="/profile/spongebob"
+      >
+        🐶
+         
+        spongebob
+      </a>
+    </li>
+  </ul>
 </div>
 `;
