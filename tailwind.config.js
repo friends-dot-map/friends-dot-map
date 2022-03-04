@@ -7,8 +7,8 @@ module.exports = {
       teal: '#3993a9',
       dark: '#3b4145',
       orange: '#DB9054',
-      white: '#FEFDE0',
-      transparent: '#00000000',
+      white: '#FFFFFF',
+      tint: 'rgba(59, 130, 246, 0.5)',
     },
     fontFamily: {
       cursive: ['Abril Fatface', 'cursive'],

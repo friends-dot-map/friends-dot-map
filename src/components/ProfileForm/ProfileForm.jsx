@@ -74,7 +74,7 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
         onChange={(e) => {
           updateProfileForm('avatar', e.target.value);
         }}
-        className="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white bg-opacity-10 text-4xl"
+        className="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl"
       />
       <p className="text-sm text-center">
         <em>Tip</em>: to open an emoji keyboard on{' '}

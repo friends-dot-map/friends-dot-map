@@ -6,6 +6,7 @@ import {
   deleteProfileByEmail,
 } from '../../services/profiles';
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
+import Loader from '../../components/Loader/Loader';
 
 export default function UpdateProfile({ isCreating = false }) {
   const { user } = useUser();
@@ -54,7 +55,12 @@ export default function UpdateProfile({ isCreating = false }) {
     setProfile({ ...profile });
   };
 
-  if (loading) return <div aria-label="loader">Loading...</div>;
+  if (loading)
+    return (
+      <div aria-label="loader">
+        <Loader />
+      </div>
+    );
   return (
     <ProfileForm
       {...{

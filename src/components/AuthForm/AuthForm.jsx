@@ -14,11 +14,11 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
     <>
       <h1 className="text-dark font-semibold font-cursive text-4xl bg-olive bg-opacity-20 w-full p-5 rounded-md text-center">
         <span className="text-teal">friends</span>.
-        <span className="text-orange">map</span>(📍)
+        <span className="text-orange">map</span>(🗺️)
       </h1>
       <div className="flex flex-col text-center items-center justify-evenly text-xl p-5 h-full">
         {isSigningUp ? (
-          <p className="text-3xl font-semibold">Welcome!</p>
+          <p className="text-3xl font-semibold">Create an account</p>
         ) : (
           <p className="text-3xl font-semibold">Welcome back!</p>
         )}
@@ -66,10 +66,16 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
             </p>
           </>
         )}
-        <p className="text-xl bg-white bg-opacity-70 p-5 rounded-md">
-          A convenient travel companion to keep your group safe and organized
-          when in unfamiliar places.
-        </p>
+        <div className="flex flex-col items-center spatext-xl bg-white ring-tint bg-opacity-70 p-5 rounded-md">
+          <p className="font-semibold">About</p>
+          <hr className="w-1/2 h-1 bg-dark opacity-30 border-1 rounded-md" />
+          <p>
+            <span className="font-semibold">friends.map(🗺️)</span> is a
+            convenient travel companion that helps to keep you and your groups
+            safe and organized in unfamiliar places while protecting your
+            privacy.
+          </p>
+        </div>
         <div className="h-1/6"></div>
       </div>
     </>

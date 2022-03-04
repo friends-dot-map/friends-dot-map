@@ -3,6 +3,7 @@ import { updateStatus } from '../../services/profiles';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
+import Loader from '../Loader/Loader';
 
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
@@ -31,7 +32,12 @@ export default function DisplayProfile() {
     history.push('/');
   };
 
-  if (loading) return <div aria-label="loader">Loading....</div>;
+  if (loading)
+    return (
+      <div aria-label="loader">
+        <Loader />
+      </div>
+    );
 
   return (
     <div className="flex flex-col text-center items-center justify-evenly p-1 h-2/3">
