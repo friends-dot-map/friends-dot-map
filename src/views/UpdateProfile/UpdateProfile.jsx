@@ -1,5 +1,6 @@
 import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
+import { useGroup } from '../../context/GroupContext';
 import {
   createProfile,
   updateProfile,
@@ -10,7 +11,8 @@ import Loader from '../../components/Loader/Loader';
 
 export default function UpdateProfile({ isCreating = false }) {
   const { user } = useUser();
-  const { profile, loading, setProfile } = useProfile();
+  const { profile, profileLoading, setProfile } = useProfile();
+  const { groupLoading } = useGroup();
 
   const handleProfile = async (username, first_name, status, avatar, likes) => {
     try {
@@ -55,7 +57,7 @@ export default function UpdateProfile({ isCreating = false }) {
     setProfile({ ...profile });
   };
 
-  if (loading)
+  if (groupLoading || profileLoading)
     return (
       <div aria-label="loader">
         <Loader />
