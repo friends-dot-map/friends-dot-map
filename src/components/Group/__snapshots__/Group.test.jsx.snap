@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the header 1`] = `
+<div>
+  <ul>
+    <li>
+      <a
+        href="/profile/spongebob"
+      >
+        🐶
+         
+        spongebob
+      </a>
+    </li>
+  </ul>
+</div>
+`;

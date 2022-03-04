@@ -1,20 +1,21 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { ProfileProvider } from '../../context/ProfileContext';
 import { UserProvider } from '../../context/UserContext';
 
 import Header from './Header';
 
-test('should render the header title', async () => {
-  render(
+test('should render the header', () => {
+  const {container} = render(
     <UserProvider>
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>
+      <ProfileProvider>
+        <MemoryRouter>
+          <Header />
+        </MemoryRouter>
+      </ProfileProvider>
     </UserProvider>
   );
-  const title = await screen.findByRole('heading', {
-    name: /friends\.map\(\)/i,
-  });
+  
 
-  expect(title).toBeInTheDocument();
+  expect(container).toMatchSnapshot();
 });
