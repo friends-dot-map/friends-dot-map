@@ -6,6 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 import UpdateProfile from './UpdateProfile';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
+import { GroupProvider } from '../../context/GroupContext';
 
 const mockProfile = {
   avatar: '🐶',
@@ -21,9 +22,20 @@ const mockUser = {
   email: 'billclinton@example.com',
   password: 'ilovemonica',
 };
+const mockGroup = [
+  {
+    avatar: '🐶',
+    username: 'spongebob',
+    first_name: 'charles',
+    likes: 'snails',
+    status: 'rockin in the free world',
+    coords: { latitude: 69, longitude: 420 },
+  },
+];
 
 jest.mock('../../context/ProfileContext');
 jest.mock('../../context/UserContext');
+jest.mock('../../context/GroupContext');
 
 const handleSubmit = rest.get(
   'https://whltcdvprhlkmnqqqllw.supabase.co',
@@ -46,9 +58,11 @@ test.only('can edit an existing profile', async () => {
   render(
     <UserProvider mockUser={mockUser}>
       <ProfileProvider mockProfile={mockProfile}>
-        <MemoryRouter>
-          <UpdateProfile />
-        </MemoryRouter>
+        <GroupProvider mockGroup={mockGroup}>
+          <MemoryRouter>
+            <UpdateProfile />
+          </MemoryRouter>
+        </GroupProvider>
       </ProfileProvider>
     </UserProvider>
   );

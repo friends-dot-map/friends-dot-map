@@ -60,6 +60,15 @@ exports[`display profile renders 1`] = `
         Edit Profile
       </a>
     </button>
+    <button
+      class=" bg-teal/75 text-white w-1/2 p-2 rounded-md"
+    >
+      <a
+        href="/"
+      >
+        Back to Map
+      </a>
+    </button>
   </div>
 </div>
 `;
