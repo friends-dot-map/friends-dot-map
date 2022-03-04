@@ -8,7 +8,7 @@ import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import { Link } from 'react-router-dom';
 import NavButton from '../NavButton/NavButton';
-import styles from './Map.module.css';
+import Loader from '../Loader/Loader';
 
 export default function Map({
   viewport,
@@ -23,19 +23,22 @@ export default function Map({
   const { group } = useGroup();
 
   if (loading && group.length < 1)
-    return <div aria-label="loader">loading</div>;
+    return (
+      <div aria-label="loader" className="bg-dark w-screen h-screen">
+        <Loader />
+      </div>
+    );
 
   return (
-    <div className={styles.map}>
+    <div className="block absolute top-0 w-screen h-screen">
       <ReactMapGL
         {...viewport}
         reuseMaps
-        style={{ position: 'relative', width: '100vw', height: '100vh' }}
-        mapStyle="mapbox://styles/mapbox/dark-v10"
+        mapStyle="mapbox://styles/spencereagleton/cl0c0c2c5004914rh8164a271"
         mapboxAccessToken={process.env.MapboxAccessToken}
         onMove={(e) => setViewport(e.viewState)}
       >
-        <NavButton className="fixed right-0" />
+        <NavButton activeOnMap />
         <NavigationControl />
         <GeolocateControl
           positionOptions={{ enableHighAccuracy: true }}
@@ -55,7 +58,7 @@ export default function Map({
             anchor="bottom"
           >
             <button
-              className="text-2xl"
+              className="text-3xl"
               onClick={(e) => {
                 e.preventDefault();
                 setSelectedUser(user);
@@ -68,7 +71,7 @@ export default function Map({
         ))}
         {showPopup && selectedUser && (
           <Popup
-            className="text-slate-800"
+            className="text-dark text-left"
             longitude={selectedUser.coords.longitude}
             latitude={selectedUser.coords.latitude}
             anchor="top-right"
@@ -77,14 +80,15 @@ export default function Map({
             closeOnClick={false}
           >
             <Link
-              className="font-bold"
+              className="font-bold text-lg"
               to={`/profile/${selectedUser.username}`}
             >
-              {selectedUser.username}
+              {selectedUser.username}{' '}
             </Link>
-            {selectedUser?.first_name}
-            <p>{selectedUser.status}</p>
-            <p>{selectedUser.updated_at}</p>
+            ({selectedUser?.first_name})
+            <hr className="w-1/2 h-1 bg-dark opacity-30 border-1 rounded-md " />
+            <p className="text-base italic">{selectedUser.status}</p>
+            <p className="text-sm">{selectedUser.updated_at}</p>
           </Popup>
         )}
       </ReactMapGL>

@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
+import { MenuIcon } from '@heroicons/react/solid';
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { useUser } from '../../context/UserContext';
@@ -10,18 +10,32 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function NavButton() {
+export default function NavButton({ activeOnMap = false }) {
   const { setUser } = useUser();
   const {
     setProfile,
     profile: { username },
   } = useProfile();
 
+  let position, bgColor, size;
+
+  if (activeOnMap) {
+    position = 'absolute right-0 top-1/4';
+    bgColor = 'bg-white ring-tint';
+    size = 'h-6 w-6';
+  } else {
+    position = 'relative';
+    bgColor = 'bg-white/0';
+    size = 'h-10 w-10';
+  }
+
   return (
-    <Menu as="div" className="absolute right-10 top-3 inline-block text-left">
+    <Menu as="div" className={`${position} inline-block text-left`}>
       <div>
-        <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        <Menu.Button
+          className={`${bgColor} inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-base font-medium text-dark hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500`}
+        >
+          <MenuIcon className={size} aria-hidden="true" />
         </Menu.Button>
       </div>
       <Transition
@@ -33,15 +47,15 @@ export default function NavButton() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-tint focus:outline-none">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
                 <Link
                   to="/"
                   className={classNames(
-                    active ? 'bg-gray-100 text-red-500' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'bg-dark/10 text-dark' : 'text-dark/70',
+                    'block px-4 py-2 text-lg'
                   )}
                 >
                   Home
@@ -53,8 +67,8 @@ export default function NavButton() {
                 <Link
                   to={`/profile/${username}`}
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'bg-dark/10 text-dark' : 'text-dark/70',
+                    'block px-4 py-2 text-lg'
                   )}
                 >
                   Your Profile
@@ -66,8 +80,8 @@ export default function NavButton() {
                 <Link
                   to="/group"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'bg-dark/10 text-dark' : 'text-dark/70',
+                    'block px-4 py-2 text-lg'
                   )}
                 >
                   Your Group
@@ -85,8 +99,8 @@ export default function NavButton() {
                   }}
                   type="submit"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block w-full text-left px-4 py-2 text-sm'
+                    active ? 'bg-dark/10 text-dark' : 'text-dark/70',
+                    'block w-full text-left px-4 py-2 text-lg'
                   )}
                 >
                   Log out

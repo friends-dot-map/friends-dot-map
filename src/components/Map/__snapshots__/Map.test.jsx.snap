@@ -4,8 +4,11 @@ exports[`map renders 1`] = `
 <div>
   <div
     aria-label="loader"
+    class="bg-dark w-screen h-screen"
   >
-    loading
+    <span
+      class="loader"
+    />
   </div>
 </div>
 `;

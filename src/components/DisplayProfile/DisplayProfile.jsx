@@ -3,6 +3,7 @@ import { updateStatus } from '../../services/profiles';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
+import Loader from '../Loader/Loader';
 
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
@@ -31,40 +32,81 @@ export default function DisplayProfile() {
     history.push('/');
   };
 
-  if (loading) return <div aria-label="loader">Loading....</div>;
+  if (loading)
+    return (
+      <div aria-label="loader">
+        <Loader />
+      </div>
+    );
 
   return (
-    <>
-      <ul>
-        <li>{currentProfile.avatar}</li>
-        <li>{currentProfile.username}</li>
-        <li>{currentProfile.first_name}</li>
-        <li>{currentProfile.likes}</li>
-      </ul>
-      {statusEdit ? (
+    <div className="flex flex-col text-center items-center justify-evenly p-1 h-2/3">
+      <p className="text-9xl">{currentProfile.avatar}</p>
+      <div className="space-y-1">
+        <h2 className="text-5xl font-cursive tracking-wider">
+          {currentProfile.username}
+        </h2>
+        <p>({currentProfile.first_name})</p>
+      </div>
+
+      {profile.username === currentProfile.username ? (
         <>
-          <input
-            value={newStatus}
-            onChange={(e) => setNewStatus(e.target.value)}
-            type="text"
-          />
-          <button onClick={handleStatus}>Post Status</button>
+          <label
+            htmlFor="status"
+            className="text-2xl font-cursive tracking-wider"
+          >
+            Current Status
+          </label>
+          {statusEdit ? (
+            <>
+              <input
+                className="rounded-md text-center align-middle p-1"
+                value={newStatus}
+                onChange={(e) => setNewStatus(e.target.value)}
+                placeholder={currentProfile.status}
+                type="text"
+              />
+              <button
+                className="bg-teal text-white w-1/2 p-2 rounded-md"
+                onClick={handleStatus}
+              >
+                Post Status
+              </button>
+            </>
+          ) : (
+            <>
+              <p id="status">{currentProfile.status}</p>
+              <button
+                className="bg-teal text-white w-1/2 p-2 rounded-md"
+                onClick={() => {
+                  setStatusEdit(true);
+                }}
+              >
+                Update Status
+              </button>
+            </>
+          )}
         </>
       ) : (
         <>
-          <p>{currentProfile.status}</p>
-          <button
-            onClick={() => {
-              setStatusEdit(true);
-            }}
+          <label
+            htmlFor="status"
+            className="text-2xl font-cursive tracking-wider"
           >
-            Update Status
-          </button>
+            Current Status
+          </label>
+          <p id="status">{currentProfile.status}</p>
         </>
       )}
-      <button>
-        <Link to="/edit">Edit Profile</Link>
-      </button>
-    </>
+      <label htmlFor="likes" className="text-2xl font-cursive tracking-wider">
+        Likes
+      </label>
+      <p id="likes">{currentProfile.likes}</p>
+      {profile.username === currentProfile.username && (
+        <button className=" bg-teal/75 text-white w-1/2 p-2 rounded-md">
+          <Link to="/edit">Edit Profile</Link>
+        </button>
+      )}
+    </div>
   );
 }

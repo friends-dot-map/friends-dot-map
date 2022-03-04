@@ -6,41 +6,47 @@ import Header from './components/Header/Header';
 import Group from './components/Group/Group';
 import DisplayProfile from './components/DisplayProfile/DisplayProfile';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import styles from './App.module.css';
 import './App.css'; /* Global CSS */
+import { useUser } from './context/UserContext';
 
 export default function App() {
+  const { user } = useUser();
   return (
-    <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route path="/login">
-          <Auth />
-        </Route>
+    <div className="bg-mint bg-opacity-90 h-screen">
+      <BrowserRouter>
+        {user.id && <Header />}
+        <Switch>
+          <Route path="/login">
+            <Auth />
+          </Route>
 
-        <Route path="/register">
-          <Auth isSigningUp />
-        </Route>
+          <Route path="/register">
+            <Auth isSigningUp />
+          </Route>
 
-        <PrivateRoute exact path="/">
-          <Home />
-        </PrivateRoute>
+          <PrivateRoute exact path="/">
+            <Home />
+            <div className="bg-dark w-screen h-1/6"></div>
+          </PrivateRoute>
 
-        <PrivateRoute path="/create">
-          <UpdateProfile isCreating />
-        </PrivateRoute>
+          <PrivateRoute path="/create">
+            <UpdateProfile isCreating />
+          </PrivateRoute>
 
-        <PrivateRoute path="/edit">
-          <UpdateProfile />
-        </PrivateRoute>
+          <PrivateRoute path="/edit">
+            <UpdateProfile />
+          </PrivateRoute>
 
-        <PrivateRoute path="/profile/:username">
-          <DisplayProfile />
-        </PrivateRoute>
+          <PrivateRoute path="/profile/:username">
+            <DisplayProfile />
+          </PrivateRoute>
 
-        <PrivateRoute path="/group">
-          <Group />
-        </PrivateRoute>
-      </Switch>
-    </BrowserRouter>
+          <PrivateRoute path="/group">
+            <Group />
+          </PrivateRoute>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }

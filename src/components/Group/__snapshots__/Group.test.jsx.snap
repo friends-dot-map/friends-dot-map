@@ -2,16 +2,52 @@
 
 exports[`should render the header 1`] = `
 <div>
-  <ul>
-    <li>
-      <a
-        href="/profile/spongebob"
+  <div
+    class="flex flex-col w-3/4 mx-auto space-y-3 items-center"
+  >
+    <h1
+      class="text-3xl font-cursive text-center mt-10"
+    >
+      Your groups
+    </h1>
+    <hr
+      class="w-1/2 h-1 bg-dark opacity-30 border-1 rounded-md "
+    />
+    <h2
+      class="text-2xl text-center"
+    >
+      friends.map(🐞)
+    </h2>
+    <ul
+      class="flex flex-col w-full space-y-5 p-2"
+    >
+      <li
+        class="flex items-center rounded-md bg-white/30 ring-tint p-3 gap-4"
       >
-        🐶
-         
-        spongebob
-      </a>
-    </li>
-  </ul>
+        <span
+          class="text-4xl "
+        >
+          🐶
+        </span>
+        <div
+          class="flex flex-col"
+        >
+          <a
+            class="font-cursive text-xl tracking-wide"
+            href="/profile/spongebob"
+          >
+            spongebob
+          </a>
+          <span
+            class="text-xs"
+          >
+            (
+            charles
+            )
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 `;
