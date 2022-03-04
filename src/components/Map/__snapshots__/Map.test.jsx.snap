@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`display profile renders 1`] = `
+exports[`map renders 1`] = `
 <div>
   <div
     aria-label="loader"
   >
-    Loading....
+    loading
   </div>
 </div>
 `;

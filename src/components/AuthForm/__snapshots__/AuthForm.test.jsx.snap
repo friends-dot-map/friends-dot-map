@@ -38,3 +38,42 @@ exports[`auth form renders login page 1`] = `
   </div>
 </div>
 `;
+
+exports[`auth form renders register page 1`] = `
+<div>
+  <div>
+    <form>
+      <label>
+        email:
+        <input
+          placeholder="please enter your email"
+          type="email"
+          value=""
+        />
+      </label>
+      <label>
+        password:
+        <input
+          placeholder="please enter your password"
+          type="password"
+          value=""
+        />
+      </label>
+      <button>
+        Log In
+      </button>
+    </form>
+    <p>
+      a convenient travel companion to keep your group safe and organized when in unfamiliar places
+    </p>
+    <p>
+      Need to make an account? 
+      <a
+        href="/register"
+      >
+        Register
+      </a>
+    </p>
+  </div>
+</div>
+`;

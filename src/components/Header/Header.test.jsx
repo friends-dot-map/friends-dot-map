@@ -10,13 +10,10 @@ test('should render the header', () => {
     <UserProvider>
       <ProfileProvider>
         <MemoryRouter>
-
-        <Header />
+          <Header />
         </MemoryRouter>
-
       </ProfileProvider>
     </UserProvider>
-
   );
   
 
