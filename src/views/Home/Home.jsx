@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import Map from '../../components/Map/Map';
-import Loader from '../../components/Loader/Loader';
-import { useGroup } from '../../context/GroupContext';
 
 export default function Home() {
   const [viewport, setViewport] = useState({
@@ -10,8 +8,7 @@ export default function Home() {
     longitude: '',
     zoom: 12,
   });
-  const { setUserCoords, profileLoading, profile } = useProfile();
-  const { groupLoading } = useGroup();
+  const { setUserCoords, profile } = useProfile();
 
   useEffect(() => {
     const fetchLocation = () => {
@@ -28,13 +25,6 @@ export default function Home() {
     };
     fetchLocation();
   }, [profile]);
-
-  if (groupLoading || profileLoading)
-    return (
-      <div aria-label="loader" className="bg-dark w-screen h-screen">
-        <Loader />
-      </div>
-    );
 
   return (
     <Map
