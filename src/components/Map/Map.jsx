@@ -68,7 +68,7 @@ export default function Map({
         ))}
         {showPopup && selectedUser && (
           <Popup
-            className="text-slate-800"
+            className="text-dark"
             longitude={selectedUser.coords.longitude}
             latitude={selectedUser.coords.latitude}
             anchor="top-right"

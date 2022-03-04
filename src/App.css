@@ -3,11 +3,8 @@
 */
 html,
 body {
-  @apply bg-slate-800;
+  @apply bg-mint;
   @apply h-full;
-  @apply text-slate-100;
-}
-
-input {
-  @apply bg-transparent;
+  @apply text-dark;
+  @apply font-sans;
 }
