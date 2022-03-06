@@ -20,7 +20,6 @@ export async function createProfile({
   email,
   username,
   first_name,
-  status,
   avatar,
   likes,
 }) {
@@ -29,7 +28,8 @@ export async function createProfile({
     email,
     username,
     first_name,
-    status,
+    status: "(...you haven't posted a status yet!)",
+    coords: { latitude: '', longitude: '' },
     avatar,
     likes,
     updated_at: formatDate(),

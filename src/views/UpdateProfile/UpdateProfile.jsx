@@ -25,6 +25,7 @@ export default function UpdateProfile({ isCreating = false }) {
           status,
           avatar,
           likes,
+          coords: { latitude: '', longitude: '' },
         });
         setProfile(data);
       } else {
@@ -59,7 +60,7 @@ export default function UpdateProfile({ isCreating = false }) {
 
   if (groupLoading || profileLoading)
     return (
-      <div aria-label="loader">
+      <div aria-label="loader" className="bg-dark w-screen h-screen">
         <Loader />
       </div>
     );

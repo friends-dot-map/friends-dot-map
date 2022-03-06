@@ -33,7 +33,7 @@ export default function DisplayProfile() {
 
   if (groupLoading || profileLoading)
     return (
-      <div aria-label="loader">
+      <div aria-label="loader" className="bg-dark w-screen h-screen">
         <Loader />
       </div>
     );
