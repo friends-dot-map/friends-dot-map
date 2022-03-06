@@ -15,9 +15,15 @@ export default function Map({ viewport, setViewport, setUserCoords }) {
   const { profile, profileLoading } = useProfile();
   const [showPopup, setShowPopup] = useState(true);
   const [selectedUser, setSelectedUser] = useState(() =>
-    profile ? profile : null
+    profile.coords ? profile : null
   );
   const { group, groupLoading } = useGroup();
+
+  const handlePopupDisplay = (user) => {
+    user === selectedUser ? setShowPopup(!showPopup) : setShowPopup(true);
+
+    setSelectedUser(user);
+  };
 
   if (groupLoading || profileLoading)
     return (
@@ -56,13 +62,9 @@ export default function Map({ viewport, setViewport, setUserCoords }) {
           >
             <button
               className="text-3xl"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedUser(user);
-                setShowPopup(true);
-              }}
+              onClick={() => handlePopupDisplay(user)}
             >
-              {user.avatar}
+              <span className="bg-white/10 rounded-md p-2">{user.avatar}</span>
             </button>
           </Marker>
         ))}
