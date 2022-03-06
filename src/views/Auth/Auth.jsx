@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
 import { signUpUser, signInUser } from '../../services/users';
@@ -25,5 +25,49 @@ export default function Auth({ isSigningUp = false }) {
       throw error;
     }
   };
-  return <AuthForm handleAuth={handleAuth} isSigningUp={isSigningUp} />;
+  return (
+    <>
+      <div className="flex flex-col text-center items-center justify-evenly text-xl p-5 h-full">
+        {isSigningUp ? (
+          <p className="text-3xl font-semibold">Create an account</p>
+        ) : (
+          <p className="text-3xl font-semibold">Welcome back!</p>
+        )}
+        <hr className="w-1/2 h-1 bg-dark/30 border-0 rounded-md" />
+
+        <AuthForm handleAuth={handleAuth} isSigningUp={isSigningUp} />
+
+        {isSigningUp ? (
+          <>
+            <p>
+              Already have an account?{' '}
+              <Link className="font-semibold block" to="/login">
+                Log In
+              </Link>
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              Need to make an account?{' '}
+              <Link className="font-semibold block" to="/register">
+                Register
+              </Link>
+            </p>
+          </>
+        )}
+        <div className="flex flex-col items-center spatext-xl bg-white ring-tint bg-opacity-70 p-5 rounded-md">
+          <p className="font-semibold">About</p>
+          <hr className="w-1/2 h-1 bg-dark opacity-30 border-1 rounded-md" />
+          <p>
+            <span className="font-semibold">friends.map(🗺️)</span> is a
+            convenient travel companion that helps to keep you and your groups
+            safe and organized in unfamiliar places while protecting your
+            privacy.
+          </p>
+        </div>
+        <div className="h-1/6"></div>
+      </div>
+    </>
+  );
 }

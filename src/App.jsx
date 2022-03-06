@@ -15,7 +15,7 @@ export default function App() {
   return (
     <div className="bg-mint bg-opacity-90 h-screen">
       <BrowserRouter>
-        {user.id && <Header />}
+        {user.id ? <Header /> : <Header hideButton />}
         <Switch>
           <Route path="/login">
             <Auth />
