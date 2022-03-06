@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import Map from '../../components/Map/Map';
-import Loader from '../../components/Loader/Loader';
 
 export default function Home() {
   const [viewport, setViewport] = useState({
