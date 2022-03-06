@@ -5,7 +5,6 @@ import { signUpUser, signInUser } from '../../services/users';
 import AuthForm from '../../components/AuthForm/AuthForm';
 
 export default function Auth({ isSigningUp = false }) {
-  const { setProfile } = useProfile();
   const { setUser } = useUser();
   const history = useHistory();
 
@@ -14,7 +13,6 @@ export default function Auth({ isSigningUp = false }) {
       if (isSigningUp) {
         const data = await signUpUser(email, password);
         setUser({ id: data.id, email: data.email });
-        setProfile({});
         history.replace('/create');
       } else {
         const data = await signInUser(email, password);
@@ -28,33 +26,27 @@ export default function Auth({ isSigningUp = false }) {
   return (
     <>
       <div className="flex flex-col text-center items-center justify-evenly text-xl p-5 h-full">
-        {isSigningUp ? (
-          <p className="text-3xl font-semibold">Create an account</p>
-        ) : (
-          <p className="text-3xl font-semibold">Welcome back!</p>
-        )}
+        <h2 className="text-3xl font-semibold">
+          {isSigningUp ? 'Create an account' : 'Welcome back!'}
+        </h2>
         <hr className="w-1/2 h-1 bg-dark/30 border-0 rounded-md" />
 
         <AuthForm handleAuth={handleAuth} isSigningUp={isSigningUp} />
 
         {isSigningUp ? (
-          <>
-            <p>
-              Already have an account?{' '}
-              <Link className="font-semibold block" to="/login">
-                Log In
-              </Link>
-            </p>
-          </>
+          <p>
+            Already have an account?{' '}
+            <Link className="font-semibold block" to="/login">
+              Log In
+            </Link>
+          </p>
         ) : (
-          <>
-            <p>
-              Need to make an account?{' '}
-              <Link className="font-semibold block" to="/register">
-                Register
-              </Link>
-            </p>
-          </>
+          <p>
+            Need to make an account?{' '}
+            <Link className="font-semibold block" to="/register">
+              Register
+            </Link>
+          </p>
         )}
         <div className="flex flex-col items-center spatext-xl bg-white ring-tint bg-opacity-70 p-5 rounded-md">
           <p className="font-semibold">About</p>
