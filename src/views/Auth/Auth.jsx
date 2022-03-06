@@ -2,9 +2,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { signUpUser, signInUser } from '../../services/users';
 import AuthForm from '../../components/AuthForm/AuthForm';
+import { useProfile } from '../../context/ProfileContext';
 
 export default function Auth({ isSigningUp = false }) {
   const { setUser } = useUser();
+  const { profile, setProfile } = useProfile();
   const history = useHistory();
 
   const handleAuth = async (email, password) => {

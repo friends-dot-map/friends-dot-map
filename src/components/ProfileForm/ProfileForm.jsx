@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 
 export default function ProfileForm({ handleProfile, updateProfileForm }) {
-  const { profile } = useProfile();
+  const { profile, setProfile } = useProfile();
   const history = useHistory();
   const { formState, formError, handleFormChange, setFormError } = useForm({
     username: profile.username,
@@ -15,11 +15,16 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, first_name, avatar, likes } = formState;
-    console.log('formState', formState);
-    console.log('profile', profile);
 
     try {
       const resp = await handleProfile(username, first_name, avatar, likes);
+      setProfile((prevState) => ({
+        ...prevState,
+        username,
+        first_name,
+        avatar,
+        likes,
+      }));
       console.log('resp', resp);
     } catch (error) {
       throw new Error('what is happening');
