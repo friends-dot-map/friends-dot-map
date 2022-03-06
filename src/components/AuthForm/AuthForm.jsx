@@ -40,7 +40,7 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
         className="p-2 rounded-md"
       />
       {formError && (
-        <p className="bg-white/40 text-orange p-2 rounded-md">{formError}</p>
+        <p className="bg-white/80 text-orange p-2 rounded-md">{formError}</p>
       )}
       <button
         className="bg-teal text-white w-1/2 p-2 rounded-md"

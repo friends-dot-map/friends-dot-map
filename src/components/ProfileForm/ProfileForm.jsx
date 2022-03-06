@@ -2,14 +2,14 @@ import { useProfile } from '../../context/ProfileContext';
 import { useHistory } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 
-export default function ProfileForm({ handleProfile, updateProfileForm }) {
+export default function ProfileForm({ isCreating, handleProfile }) {
   const { profile, setProfile } = useProfile();
   const history = useHistory();
   const { formState, formError, handleFormChange, setFormError } = useForm({
-    username: profile.username,
-    first_name: profile.first_name,
-    likes: profile.likes,
-    avatar: profile.avatar,
+    username: profile.username || '',
+    first_name: profile.first_name || '',
+    likes: profile.likes || '',
+    avatar: profile.avatar || '',
   });
 
   const handleSubmit = async (e) => {
@@ -17,17 +17,22 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
     const { username, first_name, avatar, likes } = formState;
 
     try {
-      const resp = await handleProfile(username, first_name, avatar, likes);
-      setProfile((prevState) => ({
-        ...prevState,
-        username,
-        first_name,
-        avatar,
-        likes,
-      }));
-      console.log('resp', resp);
+      if (username.length > 4) {
+        const resp = await handleProfile(username, first_name, avatar, likes);
+        setProfile(
+          (prevState) => (
+            resp.username,
+            resp.first_name,
+            resp.avatar,
+            resp.likes,
+            { ...prevState }
+          )
+        );
+      } else {
+        setFormError('username is required and must be more than 4 characters');
+      }
     } catch (error) {
-      throw new Error('what is happening');
+      setFormError(error);
     }
 
     history.replace('/');
@@ -44,15 +49,25 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
       >
         Username
       </label>
-      <input
-        id="username"
-        name="username"
-        type="text"
-        placeholder="username"
-        value={formState.username}
-        onChange={handleFormChange}
-        className="p-2 rounded-md text-center"
-      />
+      {isCreating ? (
+        <>
+          <p className="p-1 text-orange text-sm">
+            *Choose carefully! Your username must be unique and cannot be
+            changed after creating your profile.
+          </p>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="username"
+            value={formState.username}
+            onChange={handleFormChange}
+            className="p-2 rounded-md text-center"
+          />
+        </>
+      ) : (
+        <h2 className="p-2 text-xl">{formState.username}</h2>
+      )}
       <label
         className="font-cursive text-4xl tracking-wider"
         htmlFor="first_name"
@@ -98,7 +113,9 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
         <span className="font-bold">Ctrl + Cmd + Space</span>! For Windows,
         press <span className="font-bold">Windows key + .</span>{' '}
       </p>
-
+      {formError && (
+        <p className="bg-white/40 text-orange p-2 rounded-md">{formError}</p>
+      )}
       <button className="bg-teal text-white text-lg w-1/2 p-2 rounded-md">
         Submit
       </button>

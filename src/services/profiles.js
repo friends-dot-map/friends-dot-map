@@ -31,7 +31,6 @@ export async function updateProfile(
     .from('profiles')
     .update({ username, first_name, avatar, likes, updated_at: formatDate() })
     .match({ email });
-  console.log('request', request);
   return parseData(request);
 }
 

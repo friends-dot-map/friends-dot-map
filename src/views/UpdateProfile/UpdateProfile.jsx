@@ -27,7 +27,7 @@ export default function UpdateProfile({ isCreating = false }) {
           likes: likes,
           coords: { latitude: '', longitude: '' },
         });
-        setProfile(data);
+        return data;
       } else {
         const data = updateProfile(
           user.email,
@@ -36,7 +36,7 @@ export default function UpdateProfile({ isCreating = false }) {
           avatar,
           likes
         );
-        setProfile(data);
+        return data;
       }
     } catch (error) {
       throw new Error('Unable to update Supabase');
@@ -51,11 +51,6 @@ export default function UpdateProfile({ isCreating = false }) {
     }
   };
 
-  const updateProfileForm = (key, value) => {
-    profile[key] = value;
-    setProfile({ ...profile });
-  };
-
   if (groupLoading || profileLoading)
     return (
       <div aria-label="loader" className="bg-dark w-screen h-screen">
@@ -67,7 +62,6 @@ export default function UpdateProfile({ isCreating = false }) {
       {...{
         isCreating,
         handleProfile,
-        updateProfileForm,
         handleDeleteProfile,
       }}
     />

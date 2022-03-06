@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import Loader from '../Loader/Loader';
+import { formatDate } from '../../utils/utils';
 
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
@@ -23,6 +24,7 @@ export default function DisplayProfile() {
         ...prevState,
         status: data.status,
         coords: data.coords,
+        updated_at: formatDate(),
       }));
       setStatusEdit(false);
     } catch (error) {

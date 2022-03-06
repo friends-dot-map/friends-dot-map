@@ -4,6 +4,7 @@ import Home from './views/Home/Home';
 import UpdateProfile from './views/UpdateProfile/UpdateProfile';
 import Header from './components/Header/Header';
 import Group from './components/Group/Group';
+import NoMatch from './components/NoMatch/NoMatch';
 import DisplayProfile from './components/DisplayProfile/DisplayProfile';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import styles from './App.module.css';
@@ -43,6 +44,10 @@ export default function App() {
 
           <PrivateRoute path="/group">
             <Group />
+          </PrivateRoute>
+
+          <PrivateRoute path="*">
+            <NoMatch />
           </PrivateRoute>
         </Switch>
       </BrowserRouter>
