@@ -14,30 +14,28 @@ export default function UpdateProfile({ isCreating = false }) {
   const { profile, profileLoading, setProfile } = useProfile();
   const { groupLoading } = useGroup();
 
-  const handleProfile = async (username, first_name, status, avatar, likes) => {
+  const handleProfile = (username, first_name, avatar, likes) => {
     try {
       if (isCreating) {
-        const data = await createProfile({
+        const data = createProfile({
           user_id: user.id,
           email: user.email,
-          username,
-          first_name,
-          status,
-          avatar,
-          likes,
+          username: username,
+          first_name: first_name,
+          status: "(...you haven't posted anything yet!)",
+          avatar: avatar,
+          likes: likes,
           coords: { latitude: '', longitude: '' },
         });
         setProfile(data);
       } else {
-        const data = await updateProfile({
-          user_id: user.id,
-          email: user.email,
+        const data = updateProfile(
+          user.email,
           username,
           first_name,
-          status,
           avatar,
-          likes,
-        });
+          likes
+        );
         setProfile(data);
       }
     } catch (error) {

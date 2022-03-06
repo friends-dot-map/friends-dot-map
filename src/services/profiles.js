@@ -15,50 +15,23 @@ export async function getAllProfiles() {
   return parseData(request);
 }
 
-export async function createProfile({
-  user_id,
-  email,
-  username,
-  first_name,
-  avatar,
-  likes,
-}) {
-  const request = await client.from('profiles').insert({
-    user_id,
-    email,
-    username,
-    first_name,
-    status: "(...you haven't posted a status yet!)",
-    coords: { latitude: '', longitude: '' },
-    avatar,
-    likes,
-    updated_at: formatDate(),
-  });
+export async function createProfile(profile) {
+  const request = await client.from('profiles').insert(profile);
   return parseData(request);
 }
 
-export async function updateProfile({
-  user_id,
+export async function updateProfile(
   email,
   username,
   first_name,
-  status,
   avatar,
-  likes,
-}) {
+  likes
+) {
   const request = await client
     .from('profiles')
-    .update({
-      user_id,
-      email,
-      username,
-      first_name,
-      status,
-      avatar,
-      likes,
-      updated_at: formatDate(),
-    })
+    .update({ username, first_name, avatar, likes, updated_at: formatDate() })
     .match({ email });
+  console.log('request', request);
   return parseData(request);
 }
 

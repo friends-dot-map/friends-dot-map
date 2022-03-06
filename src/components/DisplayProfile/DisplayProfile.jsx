@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { updateStatus } from '../../services/profiles';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import Loader from '../Loader/Loader';
@@ -11,7 +11,6 @@ export default function DisplayProfile() {
   const { profileLoading, userCoords, profile, setProfile } = useProfile();
   const { groupLoading, group } = useGroup();
   const params = useParams();
-  const history = useHistory();
 
   const [currentProfile] = group.filter(
     (user) => user.username === params.username
@@ -102,13 +101,17 @@ export default function DisplayProfile() {
       </label>
       <p id="likes">{currentProfile.likes}</p>
       {profile.username === currentProfile.username && (
-        <button className=" bg-teal/75 text-white w-1/2 p-2 rounded-md">
-          <Link to="/edit">Edit Profile</Link>
-        </button>
+        <Link to="/edit" className="w-1/2 ">
+          <button className="bg-white/0 text-teal border-2 ring-tint p-2 rounded-md">
+            Edit Profile
+          </button>
+        </Link>
       )}
-      <button className=" bg-teal/75 text-white w-1/2 p-2 rounded-md">
-        <Link to="/">Back to Map</Link>
-      </button>
+      <Link to="/" className="w-1/2 ">
+        <button className=" bg-teal/75 text-white p-2 rounded-md">
+          Back to Map
+        </button>
+      </Link>
     </div>
   );
 }

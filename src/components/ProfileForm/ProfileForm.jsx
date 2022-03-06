@@ -1,15 +1,30 @@
 import { useProfile } from '../../context/ProfileContext';
 import { useHistory } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
 
 export default function ProfileForm({ handleProfile, updateProfileForm }) {
-  const {
-    profile: { username, first_name, likes, avatar, status },
-  } = useProfile();
+  const { profile } = useProfile();
   const history = useHistory();
+  const { formState, formError, handleFormChange, setFormError } = useForm({
+    username: profile.username,
+    first_name: profile.first_name,
+    likes: profile.likes,
+    avatar: profile.avatar,
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleProfile(username, first_name, status, avatar, likes);
+    const { username, first_name, avatar, likes } = formState;
+    console.log('formState', formState);
+    console.log('profile', profile);
+
+    try {
+      const resp = await handleProfile(username, first_name, avatar, likes);
+      console.log('resp', resp);
+    } catch (error) {
+      throw new Error('what is happening');
+    }
+
     history.replace('/');
   };
 
@@ -26,29 +41,26 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
       </label>
       <input
         id="username"
-        required
-        placeholder="username"
-        value={username}
+        name="username"
         type="text"
-        onChange={(e) => {
-          updateProfileForm('username', e.target.value);
-        }}
+        placeholder="username"
+        value={formState.username}
+        onChange={handleFormChange}
         className="p-2 rounded-md text-center"
       />
       <label
         className="font-cursive text-4xl tracking-wider"
-        htmlFor="first-name"
+        htmlFor="first_name"
       >
         Your Name
       </label>
       <input
-        id="first-name"
-        placeholder="your name"
-        value={first_name}
+        id="first_name"
+        name="first_name"
         type="text"
-        onChange={(e) => {
-          updateProfileForm('first_name', e.target.value);
-        }}
+        placeholder="your name"
+        value={formState.first_name}
+        onChange={handleFormChange}
         className="p-2 rounded-md text-center"
       />
       <label className="font-cursive text-4xl tracking-wider" htmlFor="likes">
@@ -56,24 +68,23 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
       </label>
       <input
         id="likes"
-        placeholder="what are some of your interests?"
-        value={likes}
+        name="likes"
         type="text"
-        onChange={(e) => {
-          updateProfileForm('likes', e.target.value);
-        }}
+        placeholder="likes or interests"
+        value={formState.likes}
+        onChange={handleFormChange}
         className="p-2 rounded-md text-center"
       />
       <label className="font-cursive text-4xl tracking-wider" htmlFor="avatar">
-        User Icon
+        Map Icon
       </label>
       <input
-        placeholder="🗺️"
-        value={avatar}
+        id="avatar"
+        name="avatar"
         type="text"
-        onChange={(e) => {
-          updateProfileForm('avatar', e.target.value);
-        }}
+        placeholder="🗺️"
+        value={formState.avatar}
+        onChange={handleFormChange}
         className="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl"
       />
       <p className="text-sm text-center">

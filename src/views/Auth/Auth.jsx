@@ -1,6 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
-import { useProfile } from '../../context/ProfileContext';
 import { signUpUser, signInUser } from '../../services/users';
 import AuthForm from '../../components/AuthForm/AuthForm';
 

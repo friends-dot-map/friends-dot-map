@@ -25,7 +25,7 @@ const ProfileProvider = ({ children }) => {
         const profileData = await getProfile(user.email);
         setProfile(profileData);
       } catch (error) {
-        setProfile({});
+        throw new Error('Cannot locate user profile');
       }
       setProfileLoading(false);
     };
