@@ -11,23 +11,19 @@ exports[`auth form renders login page 1`] = `
     >
       Username
     </label>
-    <input
-      class="p-2 rounded-md text-center"
-      id="username"
-      placeholder="username"
-      required=""
-      type="text"
-      value=""
+    <h2
+      class="p-2 text-xl"
     />
     <label
       class="font-cursive text-4xl tracking-wider"
-      for="first-name"
+      for="first_name"
     >
       Your Name
     </label>
     <input
       class="p-2 rounded-md text-center"
-      id="first-name"
+      id="first_name"
+      name="first_name"
       placeholder="your name"
       type="text"
       value=""
@@ -41,7 +37,8 @@ exports[`auth form renders login page 1`] = `
     <input
       class="p-2 rounded-md text-center"
       id="likes"
-      placeholder="what are some of your interests?"
+      name="likes"
+      placeholder="likes or interests"
       type="text"
       value=""
     />
@@ -49,10 +46,12 @@ exports[`auth form renders login page 1`] = `
       class="font-cursive text-4xl tracking-wider"
       for="avatar"
     >
-      User Icon
+      Map Icon
     </label>
     <input
       class="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl"
+      id="avatar"
+      name="avatar"
       placeholder="🗺️"
       type="text"
       value=""
@@ -85,6 +84,7 @@ exports[`auth form renders login page 1`] = `
       </span>
        
     </p>
+    
     <button
       class="bg-teal text-white text-lg w-1/2 p-2 rounded-md"
     >

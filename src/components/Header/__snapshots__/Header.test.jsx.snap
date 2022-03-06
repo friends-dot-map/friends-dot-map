@@ -3,10 +3,10 @@
 exports[`should render the header 1`] = `
 <div>
   <header
-    class="flex items-center gap-7 justify-between tracking-wider text-left bg-white ring-tint bg-opacity-40 w-full p-3 rounded-md"
+    class="flex tracking-wider bg-white/40 ring-tint w-full p-2 rounded-md"
   >
     <h1
-      class="text-dark font-semibold font-cursive text-3xl  "
+      class="text-dark font-semibold font-cursive text-4xl ring-tint p-2 rounded-md w-full text-center"
     >
       <span
         class="text-teal"
@@ -22,30 +22,34 @@ exports[`should render the header 1`] = `
       (🗺️)
     </h1>
     <div
-      class="relative inline-block text-left"
+      class="flex justify-end w-full"
     >
-      <div>
-        <button
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="bg-white/0 inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-base font-medium text-dark hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
-          id="headlessui-menu-button-1"
-          type="button"
-        >
-          <svg
-            aria-hidden="true"
-            class="h-10 w-10"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="relative inline-block text-left"
+      >
+        <div>
+          <button
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="bg-white/0 inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-base font-medium text-dark hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+            id="headlessui-menu-button-1"
+            type="button"
           >
-            <path
-              clip-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
+            <svg
+              aria-hidden="true"
+              class="h-10 w-10"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </header>
