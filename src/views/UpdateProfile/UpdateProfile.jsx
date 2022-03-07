@@ -11,7 +11,7 @@ import Loader from '../../components/Loader/Loader';
 
 export default function UpdateProfile({ isCreating = false }) {
   const { user } = useUser();
-  const { profile, profileLoading, setProfile } = useProfile();
+  const { profileLoading } = useProfile();
   const { groupLoading } = useGroup();
 
   const handleProfile = (username, first_name, avatar, likes) => {

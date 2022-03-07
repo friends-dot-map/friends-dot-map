@@ -16,7 +16,8 @@ module.exports = {
         sans: ['Roboto', 'sans-serif'],
       },
       backgroundImage: {
-        'map-wide': `url('./assets/map-mint.png')`,
+        'map-pdx': `url('./assets/pdx-mint.png')`,
+        'map-vsu': `url('./assets/vsu-mint.png')`,
       },
     },
   },
