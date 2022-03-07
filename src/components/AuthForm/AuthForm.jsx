@@ -18,7 +18,7 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
   };
 
   return (
-    <form className="flex flex-col items-center w-3/4 space-y-5">
+    <form className="flex flex-col items-center w-3/4 space-y-5 md:space-y-8">
       <input
         name="email"
         type="email"
@@ -27,7 +27,7 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
         autoComplete="username"
         value={formState.email}
         onChange={handleFormChange}
-        className="p-2 rounded-md"
+        className="p-2 rounded-md md:text-3xl"
       />
       <input
         name="password"
@@ -37,13 +37,13 @@ export default function AuthForm({ handleAuth, isSigningUp }) {
         autoComplete="current-password"
         value={formState.password}
         onChange={handleFormChange}
-        className="p-2 rounded-md"
+        className="p-2 rounded-md md:text-3xl"
       />
       {formError && (
         <p className="bg-white/80 text-orange p-2 rounded-md">{formError}</p>
       )}
       <button
-        className="bg-teal text-white w-1/2 p-2 rounded-md"
+        className="bg-teal text-white w-52 p-2 rounded-md md:text-3xl"
         onClick={handleSubmit}
       >
         {isSigningUp ? 'Register' : 'Log In'}

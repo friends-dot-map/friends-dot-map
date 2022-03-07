@@ -7,14 +7,13 @@ import Group from './components/Group/Group';
 import NoMatch from './components/NoMatch/NoMatch';
 import DisplayProfile from './components/DisplayProfile/DisplayProfile';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import styles from './App.module.css';
-import './App.css'; /* Global CSS */
+import './App.css';
 import { useUser } from './context/UserContext';
 
 export default function App() {
   const { user } = useUser();
   return (
-    <div className="bg-mint bg-opacity-90 h-screen">
+    <div className="bg-map-vsu bg-cover bg-center h-screen font-sans text-dark">
       <BrowserRouter>
         {user.id ? <Header /> : <Header hideButton />}
         <Switch>

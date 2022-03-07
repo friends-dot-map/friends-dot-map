@@ -6,7 +6,7 @@ exports[`should render the header 1`] = `
     class="flex tracking-wider bg-white/40 ring-tint w-full p-2 rounded-md"
   >
     <h1
-      class="text-dark font-semibold font-cursive text-4xl ring-tint p-2 rounded-md w-full text-center"
+      class="text-dark font-semibold font-cursive text-4xl md:text-7xl  ring-tint p-2 rounded-md w-full text-center"
     >
       <span
         class="text-teal"
@@ -37,7 +37,7 @@ exports[`should render the header 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="h-10 w-10"
+              class="h-10 w-10 md:h-16 md:w-16"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"

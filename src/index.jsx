@@ -11,7 +11,7 @@ render(
     <UserProvider>
       <ProfileProvider>
         <GroupProvider>
-          <App />
+          <App className="container" />
         </GroupProvider>
       </ProfileProvider>
     </UserProvider>

@@ -6,22 +6,22 @@ exports[`auth form renders login page 1`] = `
     class="flex flex-col space-y-2 justify-between h-3/4 p-5 items-center"
   >
     <label
-      class="font-cursive text-4xl tracking-wider"
+      class="font-cursive text-4xl md:text-6xl tracking-wider"
       for="username"
     >
       Username
     </label>
     <h2
-      class="p-2 text-xl"
+      class="p-2 text-xl md:text-3xl"
     />
     <label
-      class="font-cursive text-4xl tracking-wider"
+      class="font-cursive text-4xl md:text-6xl tracking-wider"
       for="first_name"
     >
       Your Name
     </label>
     <input
-      class="p-2 rounded-md text-center"
+      class="p-2 rounded-md text-center md:text-2xl"
       id="first_name"
       name="first_name"
       placeholder="your name"
@@ -29,13 +29,13 @@ exports[`auth form renders login page 1`] = `
       value=""
     />
     <label
-      class="font-cursive text-4xl tracking-wider"
+      class="font-cursive text-4xl md:text-6xl tracking-wider"
       for="likes"
     >
       Likes
     </label>
     <input
-      class="p-2 rounded-md text-center"
+      class="p-2 rounded-md text-center md:text-2xl"
       id="likes"
       name="likes"
       placeholder="likes or interests"
@@ -43,13 +43,13 @@ exports[`auth form renders login page 1`] = `
       value=""
     />
     <label
-      class="font-cursive text-4xl tracking-wider"
+      class="font-cursive text-4xl md:text-6xl tracking-wider"
       for="avatar"
     >
       Map Icon
     </label>
     <input
-      class="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl"
+      class="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl md:text-6xl"
       id="avatar"
       name="avatar"
       placeholder="🗺️"
@@ -57,7 +57,7 @@ exports[`auth form renders login page 1`] = `
       value=""
     />
     <p
-      class="text-sm text-center"
+      class="text-sm text-center md:text-lg w-3/4 md:w-1/2"
     >
       <em>
         Tip
@@ -86,7 +86,7 @@ exports[`auth form renders login page 1`] = `
     </p>
     
     <button
-      class="bg-teal text-white text-lg w-1/2 p-2 rounded-md"
+      class="bg-teal text-white w-52 p-2 rounded-md md:text-3xl"
     >
       Submit
     </button>

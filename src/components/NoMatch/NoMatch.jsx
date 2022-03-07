@@ -7,7 +7,7 @@ export default function NoMatch() {
   return (
     <div className="flex flex-col w-screen h-3/4 space-y-12 items-center content-center justify-center text-center p-2">
       <h2 className="text-orange bg-white/80 text-2xl p-5 italic rounded-md">
-        Not all who wander are lost, but we might be a little lost. <br />{' '}
+        Not all who wander are lost... but we might be a little lost. <br />{' '}
         <br />
         Thankfully, we have a map.
       </h2>

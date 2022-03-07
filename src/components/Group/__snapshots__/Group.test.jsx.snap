@@ -6,12 +6,12 @@ exports[`should render the header 1`] = `
     class="flex flex-col w-3/4 mx-auto space-y-3 items-center"
   >
     <h1
-      class="text-3xl font-cursive text-center mt-10"
+      class="text-3xl md:text-5xl font-cursive text-center mt-10"
     >
       Your groups
     </h1>
     <hr
-      class="w-1/2 h-1 bg-dark opacity-30 border-1 rounded-md "
+      class="w-40 md:w-60 h-1 bg-dark/30 border-0 rounded-md"
     />
     <h2
       class="text-2xl text-center"
@@ -25,21 +25,21 @@ exports[`should render the header 1`] = `
         class="flex items-center rounded-md bg-white/30 ring-tint p-3 gap-4"
       >
         <span
-          class="text-4xl "
+          class="text-4xl md:text-6xl"
         >
           🐶
         </span>
         <div
-          class="flex flex-col"
+          class="flex flex-col md:flex-row md: items-baseline md:space-x-2"
         >
           <a
-            class="font-cursive text-xl tracking-wide"
+            class="font-cursive text-xl md:text-3xl tracking-wide"
             href="/profile/spongebob"
           >
             spongebob
           </a>
           <span
-            class="text-xs"
+            class="text-xs md:text-lg"
           >
             (
             charles

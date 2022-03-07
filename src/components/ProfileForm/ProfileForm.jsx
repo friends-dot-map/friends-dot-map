@@ -18,7 +18,7 @@ export default function ProfileForm({ isCreating, handleProfile }) {
 
     try {
       if (username.length > 4) {
-        const resp = await handleProfile(username, first_name, avatar, likes);
+        const resp = handleProfile(username, first_name, avatar, likes);
         setProfile(
           (prevState) => (
             resp.username,
@@ -44,14 +44,14 @@ export default function ProfileForm({ isCreating, handleProfile }) {
       className="flex flex-col space-y-2 justify-between h-3/4 p-5 items-center"
     >
       <label
-        className="font-cursive text-4xl tracking-wider"
+        className="font-cursive text-4xl md:text-6xl tracking-wider"
         htmlFor="username"
       >
         Username
       </label>
       {isCreating ? (
         <>
-          <p className="p-1 text-orange text-sm">
+          <p className="p-1 text-orange text-sm md:text-lg">
             *Choose carefully! Your username must be unique and cannot be
             changed after creating your profile.
           </p>
@@ -62,14 +62,14 @@ export default function ProfileForm({ isCreating, handleProfile }) {
             placeholder="username"
             value={formState.username}
             onChange={handleFormChange}
-            className="p-2 rounded-md text-center"
+            className="p-2 rounded-md text-center md:text-2xl"
           />
         </>
       ) : (
-        <h2 className="p-2 text-xl">{formState.username}</h2>
+        <h2 className="p-2 text-xl md:text-3xl">{formState.username}</h2>
       )}
       <label
-        className="font-cursive text-4xl tracking-wider"
+        className="font-cursive text-4xl md:text-6xl tracking-wider"
         htmlFor="first_name"
       >
         Your Name
@@ -81,9 +81,12 @@ export default function ProfileForm({ isCreating, handleProfile }) {
         placeholder="your name"
         value={formState.first_name}
         onChange={handleFormChange}
-        className="p-2 rounded-md text-center"
+        className="p-2 rounded-md text-center md:text-2xl"
       />
-      <label className="font-cursive text-4xl tracking-wider" htmlFor="likes">
+      <label
+        className="font-cursive text-4xl md:text-6xl tracking-wider"
+        htmlFor="likes"
+      >
         Likes
       </label>
       <input
@@ -93,9 +96,12 @@ export default function ProfileForm({ isCreating, handleProfile }) {
         placeholder="likes or interests"
         value={formState.likes}
         onChange={handleFormChange}
-        className="p-2 rounded-md text-center"
+        className="p-2 rounded-md text-center md:text-2xl"
       />
-      <label className="font-cursive text-4xl tracking-wider" htmlFor="avatar">
+      <label
+        className="font-cursive text-4xl md:text-6xl tracking-wider"
+        htmlFor="avatar"
+      >
         Map Icon
       </label>
       <input
@@ -105,9 +111,9 @@ export default function ProfileForm({ isCreating, handleProfile }) {
         placeholder="🗺️"
         value={formState.avatar}
         onChange={handleFormChange}
-        className="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl"
+        className="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl md:text-6xl"
       />
-      <p className="text-sm text-center">
+      <p className="text-sm text-center md:text-lg w-3/4 md:w-1/2">
         <em>Tip</em>: to open an emoji keyboard on{' '}
         <span className="font-bold">MacOS</span>, use{' '}
         <span className="font-bold">Ctrl + Cmd + Space</span>! For Windows,
@@ -116,7 +122,7 @@ export default function ProfileForm({ isCreating, handleProfile }) {
       {formError && (
         <p className="bg-white/40 text-orange p-2 rounded-md">{formError}</p>
       )}
-      <button className="bg-teal text-white text-lg w-1/2 p-2 rounded-md">
+      <button className="bg-teal text-white w-52 p-2 rounded-md md:text-3xl">
         Submit
       </button>
     </form>

@@ -3,74 +3,92 @@
 exports[`display profile renders 1`] = `
 <div>
   <div
-    class="flex flex-col text-center items-center justify-evenly p-1 h-2/3"
+    class="flex flex-col text-center items-center justify-evenly p-2 h-3/4"
   >
     <p
-      class="text-9xl"
+      class="text-8xl md:text-9xl"
     >
       🐶
     </p>
     <div
-      class="space-y-1"
+      class="space-y-4"
     >
       <h2
-        class="text-5xl font-cursive tracking-wider"
+        class="text-5xl md:text-7xl font-cursive tracking-wider"
       >
         spongebob
       </h2>
-      <p>
+      <p
+        class="text-lg md:text-2xl"
+      >
         (
         charles
         )
       </p>
     </div>
     <label
-      class="text-2xl font-cursive tracking-wider"
+      class="text-2xl md:text-4xl font-cursive tracking-wider"
       for="status"
     >
       Current Status
     </label>
     <p
+      class="text-lg md:text-2xl italic"
       id="status"
     >
       rockin in the free world
     </p>
+    <p
+      class="text-sm md:text-lg"
+      id="updated"
+    >
+      posted at 
+    </p>
     <button
-      class="bg-teal text-white w-1/2 p-2 rounded-md"
+      class="bg-white/0 text-teal w-52 text-sm md:text-base p-2 rounded-md"
+    >
+      Clear status and location
+    </button>
+    <button
+      class="bg-teal text-white w-52 md:text-2xl p-2 rounded-md"
     >
       Update Status
     </button>
     <label
-      class="text-2xl font-cursive tracking-wider"
+      class="text-2xl md:text-4xl font-cursive tracking-wider"
       for="likes"
     >
       Likes
     </label>
     <p
+      class="text-lg md:text-2xl"
       id="likes"
     >
       snails
     </p>
     <a
-      class="w-1/2 "
       href="/edit"
     >
       <button
-        class="bg-white/0 text-teal border-2 ring-tint p-2 rounded-md"
+        class="bg-white text-teal  ring-tint p-2 rounded-md"
       >
         Edit Profile
       </button>
     </a>
     <a
-      class="w-1/2 "
       href="/"
     >
       <button
-        class=" bg-teal/75 text-white p-2 rounded-md"
+        class=" bg-teal text-white p-2 rounded-md"
       >
         Back to Map
       </button>
     </a>
+    <button
+      class="bg-orange text-white  ring-tint p-2 rounded-md"
+    >
+      Delete Profile
+    </button>
   </div>
 </div>
 `;
