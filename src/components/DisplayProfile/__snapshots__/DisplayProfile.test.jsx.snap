@@ -45,6 +45,11 @@ exports[`display profile renders 1`] = `
       posted at 
     </p>
     <button
+      class="bg-white/0 text-teal w-52 text-sm md:text-base p-2 rounded-md"
+    >
+      Clear status and location
+    </button>
+    <button
       class="bg-teal text-white w-52 md:text-2xl p-2 rounded-md"
     >
       Update Status
