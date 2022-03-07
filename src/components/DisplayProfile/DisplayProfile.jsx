@@ -49,14 +49,14 @@ export default function DisplayProfile() {
         <p className="text-lg md:text-2xl">({currentProfile.first_name})</p>
       </div>
 
+      <label
+        htmlFor="status"
+        className="text-2xl md:text-4xl font-cursive tracking-wider"
+      >
+        Current Status
+      </label>
       {profile.username === currentProfile.username ? (
         <>
-          <label
-            htmlFor="status"
-            className="text-2xl md:text-4xl font-cursive tracking-wider"
-          >
-            Current Status
-          </label>
           {statusEdit ? (
             <>
               <input
@@ -77,8 +77,11 @@ export default function DisplayProfile() {
             </>
           ) : (
             <>
-              <p id="status" className="text-lg md:text-2xl">
+              <p id="status" className="text-lg md:text-2xl italic">
                 {currentProfile.status}
+              </p>
+              <p id="updated" className="text-sm md:text-lg">
+                posted at {currentProfile.updated_at}
               </p>
               <button
                 className="bg-teal text-white w-52 md:text-2xl p-2 rounded-md"
@@ -93,13 +96,12 @@ export default function DisplayProfile() {
         </>
       ) : (
         <>
-          <label
-            htmlFor="status"
-            className="text-2xl font-cursive tracking-wider"
-          >
-            Current Status
-          </label>
-          <p id="status">{currentProfile.status}</p>
+          <p id="status" className="text-lg md:text-2xl italic">
+            {currentProfile.status}
+          </p>
+          <p id="updated" className="text-sm md:text-lg">
+            posted at {currentProfile.updated_at}
+          </p>
         </>
       )}
       <label
