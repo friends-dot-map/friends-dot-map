@@ -51,15 +51,26 @@ exports[`display profile renders 1`] = `
     >
       snails
     </p>
-    <button
-      class=" bg-teal/75 text-white w-1/2 p-2 rounded-md"
+    <a
+      class="w-1/2 "
+      href="/edit"
     >
-      <a
-        href="/edit"
+      <button
+        class="bg-white/0 text-teal border-2 ring-tint p-2 rounded-md"
       >
         Edit Profile
-      </a>
-    </button>
+      </button>
+    </a>
+    <a
+      class="w-1/2 "
+      href="/"
+    >
+      <button
+        class=" bg-teal/75 text-white p-2 rounded-md"
+      >
+        Back to Map
+      </button>
+    </a>
   </div>
 </div>
 `;

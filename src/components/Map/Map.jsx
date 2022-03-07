@@ -4,25 +4,28 @@ import ReactMapGL, {
   NavigationControl,
   Popup,
 } from 'react-map-gl';
+import { useState } from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import { Link } from 'react-router-dom';
 import NavButton from '../NavButton/NavButton';
 import Loader from '../Loader/Loader';
 
-export default function Map({
-  viewport,
-  setViewport,
-  setUserCoords,
-  showPopup,
-  setShowPopup,
-  selectedUser,
-  setSelectedUser,
-}) {
-  const { loading } = useProfile();
-  const { group } = useGroup();
+export default function Map({ viewport, setViewport, setUserCoords }) {
+  const { profile, profileLoading } = useProfile();
+  const [showPopup, setShowPopup] = useState(true);
+  const [selectedUser, setSelectedUser] = useState(() =>
+    profile.coords ? profile : null
+  );
+  const { group, groupLoading } = useGroup();
 
-  if (loading && group.length < 1)
+  const handlePopupDisplay = (user) => {
+    user === selectedUser ? setShowPopup(!showPopup) : setShowPopup(true);
+
+    setSelectedUser(user);
+  };
+
+  if (groupLoading || profileLoading)
     return (
       <div aria-label="loader" className="bg-dark w-screen h-screen">
         <Loader />
@@ -59,13 +62,9 @@ export default function Map({
           >
             <button
               className="text-3xl"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedUser(user);
-                setShowPopup(true);
-              }}
+              onClick={() => handlePopupDisplay(user)}
             >
-              {user.avatar}
+              <span className="bg-white/10 rounded-md p-2">{user.avatar}</span>
             </button>
           </Marker>
         ))}
