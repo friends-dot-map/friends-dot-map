@@ -15,7 +15,7 @@ exports[`auth form renders login page 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="h-10 w-10"
+          class="h-10 w-10 md:h-16 md:w-16"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"

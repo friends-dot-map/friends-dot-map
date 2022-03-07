@@ -3,12 +3,12 @@
 exports[`auth form renders login page 1`] = `
 <div>
   <form
-    class="flex flex-col items-center w-3/4 space-y-5"
+    class="flex flex-col items-center w-3/4 space-y-5 md:space-y-8"
   >
     <input
       aria-label="email"
       autocomplete="username"
-      class="p-2 rounded-md"
+      class="p-2 rounded-md md:text-3xl"
       name="email"
       placeholder="email"
       type="email"
@@ -17,7 +17,7 @@ exports[`auth form renders login page 1`] = `
     <input
       aria-label="password"
       autocomplete="current-password"
-      class="p-2 rounded-md"
+      class="p-2 rounded-md md:text-3xl"
       name="password"
       placeholder="password"
       type="password"
@@ -25,7 +25,7 @@ exports[`auth form renders login page 1`] = `
     />
     
     <button
-      class="bg-teal text-white w-1/2 p-2 rounded-md"
+      class="bg-teal text-white w-52 p-2 rounded-md md:text-3xl"
     >
       Log In
     </button>
@@ -36,12 +36,12 @@ exports[`auth form renders login page 1`] = `
 exports[`auth form renders register page 1`] = `
 <div>
   <form
-    class="flex flex-col items-center w-3/4 space-y-5"
+    class="flex flex-col items-center w-3/4 space-y-5 md:space-y-8"
   >
     <input
       aria-label="email"
       autocomplete="username"
-      class="p-2 rounded-md"
+      class="p-2 rounded-md md:text-3xl"
       name="email"
       placeholder="email"
       type="email"
@@ -50,7 +50,7 @@ exports[`auth form renders register page 1`] = `
     <input
       aria-label="password"
       autocomplete="current-password"
-      class="p-2 rounded-md"
+      class="p-2 rounded-md md:text-3xl"
       name="password"
       placeholder="password"
       type="password"
@@ -58,7 +58,7 @@ exports[`auth form renders register page 1`] = `
     />
     
     <button
-      class="bg-teal text-white w-1/2 p-2 rounded-md"
+      class="bg-teal text-white w-52 p-2 rounded-md md:text-3xl"
     >
       Register
     </button>

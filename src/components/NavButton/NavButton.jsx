@@ -84,7 +84,7 @@ export default function NavButton({ activeOnMap = false }) {
                     'block px-4 py-2 text-lg'
                   )}
                 >
-                  Your Group
+                  Your Groups
                 </Link>
               )}
             </Menu.Item>
