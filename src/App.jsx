@@ -4,6 +4,7 @@ import Home from './views/Home/Home';
 import UpdateProfile from './views/UpdateProfile/UpdateProfile';
 import Header from './components/Header/Header';
 import Group from './components/Group/Group';
+import NoMatch from './components/NoMatch/NoMatch';
 import DisplayProfile from './components/DisplayProfile/DisplayProfile';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import styles from './App.module.css';
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <div className="bg-mint bg-opacity-90 h-screen">
       <BrowserRouter>
-        {user.id && <Header />}
+        {user.id ? <Header /> : <Header hideButton />}
         <Switch>
           <Route path="/login">
             <Auth />
@@ -27,7 +28,6 @@ export default function App() {
 
           <PrivateRoute exact path="/">
             <Home />
-            <div className="bg-dark w-screen h-1/6"></div>
           </PrivateRoute>
 
           <PrivateRoute path="/create">
@@ -44,6 +44,10 @@ export default function App() {
 
           <PrivateRoute path="/group">
             <Group />
+          </PrivateRoute>
+
+          <PrivateRoute path="*">
+            <NoMatch />
           </PrivateRoute>
         </Switch>
       </BrowserRouter>

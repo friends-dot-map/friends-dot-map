@@ -6,6 +6,7 @@ export const GroupContext = createContext();
 
 const GroupProvider = ({ children }) => {
   const [group, setGroup] = useState([]);
+  const [groupLoading, setGroupLoading] = useState(true);
   const { profile } = useProfile();
 
   useEffect(() => {
@@ -13,14 +14,15 @@ const GroupProvider = ({ children }) => {
       try {
         const data = await getAllProfiles();
         setGroup(data);
-      } catch (error) {
-        throw error('something went horribly wrong');
+      } catch {
+        setGroup([]);
       }
+      setGroupLoading(false);
     };
     fetchGroup();
   }, [profile]);
 
-  const groupValue = { group };
+  const groupValue = { group, groupLoading };
 
   return (
     <GroupContext.Provider value={groupValue}>{children}</GroupContext.Provider>

@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { updateStatus } from '../../services/profiles';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import Loader from '../Loader/Loader';
+import { formatDate } from '../../utils/utils';
 
 export default function DisplayProfile() {
   const [statusEdit, setStatusEdit] = useState(false);
   const [newStatus, setNewStatus] = useState('');
-  const { loading, userCoords, profile, setProfile } = useProfile();
-  const { group } = useGroup();
+  const { profileLoading, userCoords, profile, setProfile } = useProfile();
+  const { groupLoading, group } = useGroup();
   const params = useParams();
-  const history = useHistory();
 
   const [currentProfile] = group.filter(
     (user) => user.username === params.username
@@ -24,17 +24,17 @@ export default function DisplayProfile() {
         ...prevState,
         status: data.status,
         coords: data.coords,
+        updated_at: formatDate(),
       }));
       setStatusEdit(false);
     } catch (error) {
-      throw new Error('Was not able to update status');
+      throw error;
     }
-    history.push('/');
   };
 
-  if (loading)
+  if (groupLoading || profileLoading)
     return (
-      <div aria-label="loader">
+      <div aria-label="loader" className="bg-dark w-screen h-screen">
         <Loader />
       </div>
     );
@@ -103,10 +103,17 @@ export default function DisplayProfile() {
       </label>
       <p id="likes">{currentProfile.likes}</p>
       {profile.username === currentProfile.username && (
-        <button className=" bg-teal/75 text-white w-1/2 p-2 rounded-md">
-          <Link to="/edit">Edit Profile</Link>
-        </button>
+        <Link to="/edit" className="w-1/2 ">
+          <button className="bg-white/0 text-teal border-2 ring-tint p-2 rounded-md">
+            Edit Profile
+          </button>
+        </Link>
       )}
+      <Link to="/" className="w-1/2 ">
+        <button className=" bg-teal/75 text-white p-2 rounded-md">
+          Back to Map
+        </button>
+      </Link>
     </div>
   );
 }

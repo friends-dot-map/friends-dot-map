@@ -1,15 +1,40 @@
 import { useProfile } from '../../context/ProfileContext';
 import { useHistory } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
 
-export default function ProfileForm({ handleProfile, updateProfileForm }) {
-  const {
-    profile: { username, first_name, likes, avatar, status },
-  } = useProfile();
+export default function ProfileForm({ isCreating, handleProfile }) {
+  const { profile, setProfile } = useProfile();
   const history = useHistory();
+  const { formState, formError, handleFormChange, setFormError } = useForm({
+    username: profile.username || '',
+    first_name: profile.first_name || '',
+    likes: profile.likes || '',
+    avatar: profile.avatar || '',
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleProfile(username, first_name, status, avatar, likes);
+    const { username, first_name, avatar, likes } = formState;
+
+    try {
+      if (username.length > 4) {
+        const resp = await handleProfile(username, first_name, avatar, likes);
+        setProfile(
+          (prevState) => (
+            resp.username,
+            resp.first_name,
+            resp.avatar,
+            resp.likes,
+            { ...prevState }
+          )
+        );
+      } else {
+        setFormError('username is required and must be more than 4 characters');
+      }
+    } catch (error) {
+      setFormError(error);
+    }
+
     history.replace('/');
   };
 
@@ -24,31 +49,38 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
       >
         Username
       </label>
-      <input
-        id="username"
-        required
-        placeholder="username"
-        value={username}
-        type="text"
-        onChange={(e) => {
-          updateProfileForm('username', e.target.value);
-        }}
-        className="p-2 rounded-md text-center"
-      />
+      {isCreating ? (
+        <>
+          <p className="p-1 text-orange text-sm">
+            *Choose carefully! Your username must be unique and cannot be
+            changed after creating your profile.
+          </p>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="username"
+            value={formState.username}
+            onChange={handleFormChange}
+            className="p-2 rounded-md text-center"
+          />
+        </>
+      ) : (
+        <h2 className="p-2 text-xl">{formState.username}</h2>
+      )}
       <label
         className="font-cursive text-4xl tracking-wider"
-        htmlFor="first-name"
+        htmlFor="first_name"
       >
         Your Name
       </label>
       <input
-        id="first-name"
-        placeholder="your name"
-        value={first_name}
+        id="first_name"
+        name="first_name"
         type="text"
-        onChange={(e) => {
-          updateProfileForm('first_name', e.target.value);
-        }}
+        placeholder="your name"
+        value={formState.first_name}
+        onChange={handleFormChange}
         className="p-2 rounded-md text-center"
       />
       <label className="font-cursive text-4xl tracking-wider" htmlFor="likes">
@@ -56,24 +88,23 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
       </label>
       <input
         id="likes"
-        placeholder="what are some of your interests?"
-        value={likes}
+        name="likes"
         type="text"
-        onChange={(e) => {
-          updateProfileForm('likes', e.target.value);
-        }}
+        placeholder="likes or interests"
+        value={formState.likes}
+        onChange={handleFormChange}
         className="p-2 rounded-md text-center"
       />
       <label className="font-cursive text-4xl tracking-wider" htmlFor="avatar">
-        User Icon
+        Map Icon
       </label>
       <input
-        placeholder="🗺️"
-        value={avatar}
+        id="avatar"
+        name="avatar"
         type="text"
-        onChange={(e) => {
-          updateProfileForm('avatar', e.target.value);
-        }}
+        placeholder="🗺️"
+        value={formState.avatar}
+        onChange={handleFormChange}
         className="p-2 rounded-md text-center placeholder:opacity-30 w-1/4 bg-white ring-tint bg-opacity-10 text-4xl"
       />
       <p className="text-sm text-center">
@@ -82,7 +113,9 @@ export default function ProfileForm({ handleProfile, updateProfileForm }) {
         <span className="font-bold">Ctrl + Cmd + Space</span>! For Windows,
         press <span className="font-bold">Windows key + .</span>{' '}
       </p>
-
+      {formError && (
+        <p className="bg-white/40 text-orange p-2 rounded-md">{formError}</p>
+      )}
       <button className="bg-teal text-white text-lg w-1/2 p-2 rounded-md">
         Submit
       </button>

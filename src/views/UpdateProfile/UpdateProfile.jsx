@@ -1,5 +1,6 @@
 import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
+import { useGroup } from '../../context/GroupContext';
 import {
   createProfile,
   updateProfile,
@@ -10,32 +11,32 @@ import Loader from '../../components/Loader/Loader';
 
 export default function UpdateProfile({ isCreating = false }) {
   const { user } = useUser();
-  const { profile, loading, setProfile } = useProfile();
+  const { profile, profileLoading, setProfile } = useProfile();
+  const { groupLoading } = useGroup();
 
-  const handleProfile = async (username, first_name, status, avatar, likes) => {
+  const handleProfile = (username, first_name, avatar, likes) => {
     try {
       if (isCreating) {
-        const data = await createProfile({
+        const data = createProfile({
           user_id: user.id,
           email: user.email,
-          username,
-          first_name,
-          status,
-          avatar,
-          likes,
+          username: username,
+          first_name: first_name,
+          status: "(...you haven't posted anything yet!)",
+          avatar: avatar,
+          likes: likes,
+          coords: { latitude: '', longitude: '' },
         });
-        setProfile(data);
+        return data;
       } else {
-        const data = await updateProfile({
-          user_id: user.id,
-          email: user.email,
+        const data = updateProfile(
+          user.email,
           username,
           first_name,
-          status,
           avatar,
-          likes,
-        });
-        setProfile(data);
+          likes
+        );
+        return data;
       }
     } catch (error) {
       throw new Error('Unable to update Supabase');
@@ -50,14 +51,9 @@ export default function UpdateProfile({ isCreating = false }) {
     }
   };
 
-  const updateProfileForm = (key, value) => {
-    profile[key] = value;
-    setProfile({ ...profile });
-  };
-
-  if (loading)
+  if (groupLoading || profileLoading)
     return (
-      <div aria-label="loader">
+      <div aria-label="loader" className="bg-dark w-screen h-screen">
         <Loader />
       </div>
     );
@@ -66,7 +62,6 @@ export default function UpdateProfile({ isCreating = false }) {
       {...{
         isCreating,
         handleProfile,
-        updateProfileForm,
         handleDeleteProfile,
       }}
     />
