@@ -40,34 +40,36 @@ export default function DisplayProfile() {
     );
 
   return (
-    <div className="flex flex-col text-center items-center justify-evenly p-1 h-2/3">
-      <p className="text-9xl">{currentProfile.avatar}</p>
-      <div className="space-y-1">
-        <h2 className="text-5xl font-cursive tracking-wider">
+    <div className="flex flex-col text-center items-center justify-evenly p-2 h-3/4">
+      <p className="text-8xl md:text-9xl">{currentProfile.avatar}</p>
+      <div className="space-y-4">
+        <h2 className="text-5xl md:text-7xl font-cursive tracking-wider">
           {currentProfile.username}
         </h2>
-        <p>({currentProfile.first_name})</p>
+        <p className="text-lg md:text-2xl">({currentProfile.first_name})</p>
       </div>
 
       {profile.username === currentProfile.username ? (
         <>
           <label
             htmlFor="status"
-            className="text-2xl font-cursive tracking-wider"
+            className="text-2xl md:text-4xl font-cursive tracking-wider"
           >
             Current Status
           </label>
           {statusEdit ? (
             <>
               <input
-                className="rounded-md text-center align-middle p-1"
+                id="status"
+                name="status"
+                type="text"
+                placeholder={currentProfile.status}
                 value={newStatus}
                 onChange={(e) => setNewStatus(e.target.value)}
-                placeholder={currentProfile.status}
-                type="text"
+                className="rounded-md text-center align-middle p-1 md:text-2xl"
               />
               <button
-                className="bg-teal text-white w-1/2 p-2 rounded-md"
+                className="bg-teal text-white w-52 md:text-2xl p-2 rounded-md"
                 onClick={handleStatus}
               >
                 Post Status
@@ -75,9 +77,11 @@ export default function DisplayProfile() {
             </>
           ) : (
             <>
-              <p id="status">{currentProfile.status}</p>
+              <p id="status" className="text-lg md:text-2xl">
+                {currentProfile.status}
+              </p>
               <button
-                className="bg-teal text-white w-1/2 p-2 rounded-md"
+                className="bg-teal text-white w-52 md:text-2xl p-2 rounded-md"
                 onClick={() => {
                   setStatusEdit(true);
                 }}
@@ -98,22 +102,38 @@ export default function DisplayProfile() {
           <p id="status">{currentProfile.status}</p>
         </>
       )}
-      <label htmlFor="likes" className="text-2xl font-cursive tracking-wider">
+      <label
+        htmlFor="likes"
+        className="text-2xl md:text-4xl font-cursive tracking-wider"
+      >
         Likes
       </label>
-      <p id="likes">{currentProfile.likes}</p>
-      {profile.username === currentProfile.username && (
-        <Link to="/edit" className="w-1/2 ">
-          <button className="bg-white/0 text-teal border-2 ring-tint p-2 rounded-md">
-            Edit Profile
+      <p id="likes" className="text-lg md:text-2xl">
+        {currentProfile.likes}
+      </p>
+      {profile.username === currentProfile.username ? (
+        <>
+          <Link to="/edit">
+            <button className="bg-white text-teal  ring-tint p-2 rounded-md">
+              Edit Profile
+            </button>
+          </Link>
+          <Link to="/">
+            <button className=" bg-teal text-white p-2 rounded-md">
+              Back to Map
+            </button>
+          </Link>
+          <button className="bg-orange text-white  ring-tint p-2 rounded-md">
+            Delete Profile
+          </button>
+        </>
+      ) : (
+        <Link to="/">
+          <button className=" bg-teal text-white p-2 rounded-md">
+            Back to Map
           </button>
         </Link>
       )}
-      <Link to="/" className="w-1/2 ">
-        <button className=" bg-teal text-white p-2 rounded-md">
-          Back to Map
-        </button>
-      </Link>
     </div>
   );
 }
