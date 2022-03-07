@@ -110,7 +110,7 @@ export default function DisplayProfile() {
         </Link>
       )}
       <Link to="/" className="w-1/2 ">
-        <button className=" bg-teal/75 text-white p-2 rounded-md">
+        <button className=" bg-teal text-white p-2 rounded-md">
           Back to Map
         </button>
       </Link>

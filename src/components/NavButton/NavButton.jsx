@@ -22,11 +22,11 @@ export default function NavButton({ activeOnMap = false }) {
   if (activeOnMap) {
     position = 'absolute right-0 top-1/4';
     bgColor = 'bg-white ring-tint';
-    size = 'h-6 w-6';
+    size = 'h-6 w-6 ';
   } else {
     position = 'relative';
     bgColor = 'bg-white/0';
-    size = 'h-10 w-10';
+    size = 'h-10 w-10 md:h-16 md:w-16';
   }
 
   return (
@@ -35,7 +35,7 @@ export default function NavButton({ activeOnMap = false }) {
         <Menu.Button
           className={`${bgColor} inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 text-base font-medium text-dark hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500`}
         >
-          <MenuIcon className={size} aria-hidden="true" />
+          <MenuIcon className={`${size}`} aria-hidden="true" />
         </Menu.Button>
       </div>
       <Transition
