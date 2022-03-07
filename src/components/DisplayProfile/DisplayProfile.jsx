@@ -1,17 +1,20 @@
 import { useState } from 'react';
-import { updateStatus } from '../../services/profiles';
-import { Link, useParams } from 'react-router-dom';
+import { updateStatus, deleteProfileById } from '../../services/profiles';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
 import { useGroup } from '../../context/GroupContext';
 import Loader from '../Loader/Loader';
 import { formatDate } from '../../utils/utils';
 
 export default function DisplayProfile() {
+  const { user } = useUser();
   const [statusEdit, setStatusEdit] = useState(false);
   const [newStatus, setNewStatus] = useState('');
   const { profileLoading, userCoords, profile, setProfile } = useProfile();
   const { groupLoading, group } = useGroup();
   const params = useParams();
+  const history = useHistory();
 
   const [currentProfile] = group.filter(
     (user) => user.username === params.username
@@ -30,6 +33,16 @@ export default function DisplayProfile() {
     } catch (error) {
       throw error;
     }
+  };
+
+  const handleDeleteProfile = async () => {
+    try {
+      confirm('Are you sure you want to delete this profile?');
+      await deleteProfileById(user.id);
+    } catch (error) {
+      throw error;
+    }
+    history.replace('/login');
   };
 
   if (groupLoading || profileLoading)
@@ -125,7 +138,10 @@ export default function DisplayProfile() {
               Back to Map
             </button>
           </Link>
-          <button className="bg-orange text-white  ring-tint p-2 rounded-md">
+          <button
+            onClick={handleDeleteProfile}
+            className="bg-orange text-white  ring-tint p-2 rounded-md"
+          >
             Delete Profile
           </button>
         </>

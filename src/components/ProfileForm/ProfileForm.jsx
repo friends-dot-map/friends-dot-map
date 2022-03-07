@@ -18,7 +18,7 @@ export default function ProfileForm({ isCreating, handleProfile }) {
 
     try {
       if (username.length > 4) {
-        const resp = await handleProfile(username, first_name, avatar, likes);
+        const resp = handleProfile(username, first_name, avatar, likes);
         setProfile(
           (prevState) => (
             resp.username,
