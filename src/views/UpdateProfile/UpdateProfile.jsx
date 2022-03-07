@@ -18,7 +18,7 @@ export default function UpdateProfile({ isCreating = false }) {
           email: user.email,
           username: username,
           first_name: first_name,
-          status: "(...you haven't posted anything yet!)",
+          status: '',
           avatar: avatar,
           likes: likes,
           coords: { latitude: '', longitude: '' },

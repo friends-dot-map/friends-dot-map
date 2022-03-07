@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { updateStatus, deleteProfileById } from '../../services/profiles';
+import {
+  updateStatus,
+  resetStatus,
+  deleteProfileById,
+} from '../../services/profiles';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
@@ -20,7 +24,7 @@ export default function DisplayProfile() {
     (user) => user.username === params.username
   );
 
-  const handleStatus = async () => {
+  const handleUpdateStatus = async () => {
     try {
       const [data] = await updateStatus(newStatus, userCoords, profile.user_id);
       setProfile((prevState) => ({
@@ -35,14 +39,35 @@ export default function DisplayProfile() {
     }
   };
 
-  const handleDeleteProfile = async () => {
-    try {
-      confirm('Are you sure you want to delete this profile?');
-      await deleteProfileById(user.id);
-    } catch (error) {
-      throw error;
+  const handleResetStatus = async () => {
+    if (
+      confirm(
+        'Are you sure you want to clear your status and last posted location?'
+      )
+    ) {
+      try {
+        const [data] = await resetStatus(profile.user_id);
+        setProfile((prevState) => ({
+          ...prevState,
+          status: data.status,
+          coords: data.coords,
+          updated_at: formatDate(),
+        }));
+      } catch (error) {
+        throw error;
+      }
     }
-    history.replace('/login');
+  };
+
+  const handleDeleteProfile = async () => {
+    if (confirm('Are you sure you want to delete this profile?')) {
+      try {
+        await deleteProfileById(user.id);
+        history.replace('/login');
+      } catch (error) {
+        throw error;
+      }
+    }
   };
 
   if (groupLoading || profileLoading)
@@ -68,9 +93,12 @@ export default function DisplayProfile() {
       >
         Current Status
       </label>
+
       {profile.username === currentProfile.username ? (
+        // Display the current user's profile
         <>
           {statusEdit ? (
+            // If the user is currently editing their status...
             <>
               <input
                 id="status"
@@ -83,19 +111,31 @@ export default function DisplayProfile() {
               />
               <button
                 className="bg-teal text-white w-52 md:text-2xl p-2 rounded-md"
-                onClick={handleStatus}
+                onClick={handleUpdateStatus}
               >
                 Post Status
               </button>
             </>
           ) : (
+            // Else, show the current user's status
             <>
               <p id="status" className="text-lg md:text-2xl italic">
                 {currentProfile.status}
               </p>
-              <p id="updated" className="text-sm md:text-lg">
-                posted at {currentProfile.updated_at}
-              </p>
+              {currentProfile.status && (
+                // Show the last update only if there is a current status to display
+                <>
+                  <p id="updated" className="text-sm md:text-lg">
+                    posted at {currentProfile.updated_at}
+                  </p>
+                  <button
+                    className="bg-white/0 text-teal w-52 text-sm md:text-base p-2 rounded-md"
+                    onClick={handleResetStatus}
+                  >
+                    Clear status and location
+                  </button>
+                </>
+              )}
               <button
                 className="bg-teal text-white w-52 md:text-2xl p-2 rounded-md"
                 onClick={() => {
@@ -108,13 +148,17 @@ export default function DisplayProfile() {
           )}
         </>
       ) : (
+        // Display the current status for profiles other than the users
         <>
           <p id="status" className="text-lg md:text-2xl italic">
             {currentProfile.status}
           </p>
-          <p id="updated" className="text-sm md:text-lg">
-            posted at {currentProfile.updated_at}
-          </p>
+          {currentProfile.status && (
+            // Show the last update only if there is a current status to display
+            <p id="updated" className="text-sm md:text-lg">
+              posted at {currentProfile.updated_at}
+            </p>
+          )}
         </>
       )}
       <label
