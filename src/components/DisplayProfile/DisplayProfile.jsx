@@ -19,6 +19,7 @@ export default function DisplayProfile() {
 
   const handleStatus = async () => {
     try {
+      // throw a .single() onto the end of the updateStatus request to avoid this destructuring
       const [data] = await updateStatus(newStatus, userCoords, profile.user_id);
       setProfile((prevState) => ({
         ...prevState,

@@ -6,6 +6,7 @@ import { useProfile } from '../../context/ProfileContext';
 
 export default function Auth({ isSigningUp = false }) {
   const { setUser } = useUser();
+  // are these profile variables being used?
   const { profile, setProfile } = useProfile();
   const history = useHistory();
 
