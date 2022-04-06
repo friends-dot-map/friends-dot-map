@@ -6,6 +6,7 @@ import { useUser } from '../../context/UserContext';
 import { useProfile } from '../../context/ProfileContext';
 import { signOutUser } from '../../services/users';
 
+// you can also use the libary classnames but i like that you built your own :)
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }

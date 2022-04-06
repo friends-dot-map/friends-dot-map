@@ -20,6 +20,8 @@ const GroupProvider = ({ children }) => {
       setGroupLoading(false);
     };
     fetchGroup();
+    // I think i'm remembering that you need profile in the dep array so that if the user updates their
+    // status this would reload the list of profiles?
   }, [profile]);
 
   const groupValue = { group, groupLoading };
